@@ -6,6 +6,20 @@ session_start();
     <head>
         <title>LogIn</title>
         <style>
+            body{
+                margin:0px;
+                padding:0px;
+            }
+            .header{
+                width:100%;
+                height:10%;
+                background:#59af50;
+            }
+            .body{
+                width:100%;
+                height:90%;
+                background:#aed581;
+            }
         </style>
     </head>
     <body>
