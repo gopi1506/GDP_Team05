@@ -20,6 +20,34 @@ session_start();
                 height:90%;
                 background:#aed581;
             }
+            #name{
+                margin:0px;
+                padding:22px 0px 0px 10px;
+                color:#fff;
+            }
+            .signup{
+                width:50%;
+                height:40%;
+                padding-top:30px;
+            }
+            .mini-header{
+                width:100%;
+                height:20%;
+                background:#59af50;
+            }
+            .mini-body{
+                width:100%;
+                height:80%;
+                background:#dcedc9;
+            }
+            .form_input{
+                width:80%;
+                height:15%;
+                border:0px;
+                margin:8px 0px 8px 0px;
+                padding-left:4px;
+
+            }
         </style>
     </head>
     <body>
