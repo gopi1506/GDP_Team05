@@ -1,4 +1,10 @@
+<?php
+session_start();
+?>
 
+<html>
+<head>
+<title>Instructor Dashboard</title>
 </head>
 <body>
 <div class='header'>
