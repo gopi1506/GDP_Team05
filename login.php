@@ -32,3 +32,18 @@ session_start();
 <a href='index.php' style='text-decoration:none;float:right;'><h4 style='color:#000;margin:0px;padding-right:20px;'>Don't have an account?SignUp</h4></a>
 
 </div>
+</div></center>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>
