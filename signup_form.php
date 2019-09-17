@@ -1,7 +1,13 @@
 <?php
 session_start();
 ?>
-
+<?php
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $is_instructor = $_POST['is_instructor'];
 <html>
     <head>
         <title>User Registaration</title>
@@ -34,3 +40,4 @@ session_start();
         </div>
     </body>
 </html>
+?>
