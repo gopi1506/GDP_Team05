@@ -2,7 +2,7 @@
 session_start();
 ?>
 <?php
-
+error_reporting(0);
 $course_name = $_POST["course"];
 $date = $_POST["date"];
 
