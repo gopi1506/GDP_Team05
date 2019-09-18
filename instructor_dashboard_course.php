@@ -1,7 +1,9 @@
 <?php
 session_start();
 ?>
-
+<?php
+error_reporting(0);
+?>
 <html>
 <head>
 <title>Instructor Dashboard</title>
@@ -13,33 +15,35 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#b3b3b3;
+background:#59af50;
 }
 .name{
 margin:0px;
-padding:20px 20px;
-color:#000000;
+padding:22px 22px 0px 10px;
+color:#fff;
 float:left;
 }
 .body{
 width:100%;
-height:80%;
+height:90%;
 }
 .body_main{
-width:100%;
-height:80%;
-background:#4d4d4d;
+
+width:90%;
+height:85%;
+background:#aed581;
 margin:0px auto;
 }
 .tab_bar{
 width:100%;
 height:10%;
+background:#59af50;
 }
 
 .tab_name{
-width:25%;
+width:33.33%;
 height:100%;
-color:#cccccc;
+color:#fff;
 float:left;
 text-align:center;
 margin:0px;
@@ -47,17 +51,126 @@ padding-top:10px;
 }
 
 .tab_name:hover{
-background:#cccccc;
-transition:1s ease;
+background:#85b887;
+transition:2s ease;
 }
 .active{
-background:#cccccc;
-color:#000000;
+background:#85b887;
+}
+
+
+
+
+
+.txt_article {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   line-height: 1.4em;        /* fallback */
+   max-height: 4.2em;       /* fallback */
+   -webkit-line-clamp: 3; /* number of lines to show */
+}
+
+.card_main {
+  width: 100%;
+  margin-left:12px;
+  
+}
+
+
+.delete_class {
+  width: 18em;
+  float:left;
+  margin-right:12px;
+}
+
+.txt_user {
+  margin: 0px 16px 8px 16px;
+  padding-top: 16px;
+  font-size: 120%;
+}
+
+.txt_user_description {
+  margin: 0px 16px 0px 16px;
+  padding-bottom: 16px;
+  font-size: 80%;
+}
+
+.txt_title {
+  font-size: 1.1em;
+  text-align:left;
+
+}
+
+.txt_post_type {
+  color: #ffffff;
+  margin: 0px;
+  font-family: roboto;
+  font-weight: 400;
+  padding: 8px 16px;
+}
+
+.post_header {
+  color: #ffffff;
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  box-shadow: 0px 4px 8px rgba(0,0,0,.4);
+  border-radius: 8px 8px 0px 0px;
+  height: auto;
+  background-color: #00897B;
+}
+
+
+.card_image {
+  margin-right: 16px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  top: -1em;
+  width: 36%;
+  border-radius: 50%;
+  box-shadow: 0px 4px 6px rgba(0,0,0,.5);
+}
+
+.card_content {
+  position: relative;
+  background: #ffffff;
+  margin: 0px;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+  padding: 4px 16px;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Pre-render the bigger shadow, but hide it */
+
+.card_content::after {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  content: "";
+  border-radius: 8px;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Transition to showing the bigger shadow on hover */
+
+.card_content:hover::after, .post_header:hover + .card_content::after{
+  opacity: 1;
 }
 
 </style>
 </head>
-
 <body>
 <div class='header'>
 <h2 class ='name'>CODEWORD</h2>
@@ -73,8 +186,8 @@ color:#000000;
 <a href='#' style='text-decoration:none;'><h3 class='tab_name active'>Course</h3></a>
 <a href='instructor_dashboard_codeword.php' style='text-decoration:none;'><h3 class='tab_name'>Codeword</h3></a>
 </div>
-<div class='card_view_bar'></div>
-  <?php
+<div class='card_view_bar'>
+<?php
 $email = $_SESSION["email"];
 
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
@@ -131,6 +244,9 @@ $query2 = mysqli_query($db, $query) or die('error querying db');
 
 
 ?>
+</div><!-- card view bar end inside this comes all course details -->
+
+
 </div>
 </div>
 </body>
