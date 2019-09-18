@@ -24,5 +24,18 @@ session_start();
                         include 'login.php';
             
         }
+        else
+        {
+            if($is_instructor == null){
+                $role = 'Student';
+            }
+            else{
+                $role = $is_instructor;
+            }
+            $query = "insert into user_details(first_name,last_name,email,password,role,last_login,is_active) values ('$first_name','$last_name','$email','$password','$role','','')";
+	        $query2 = mysqli_query($db, $query);
+            echo " <script>alert('Sucesssfully Registered');</script>  ";
+		    include 'login.php';
+        }
     }
 ?>
