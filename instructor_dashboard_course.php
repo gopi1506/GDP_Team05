@@ -15,12 +15,12 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#59af50;
+background:#0c0032;
 }
 .name{
 margin:0px;
 padding:22px 22px 0px 10px;
-color:#fff;
+color:#240090;
 float:left;
 }
 .body{
@@ -31,17 +31,17 @@ height:90%;
 
 width:90%;
 height:85%;
-background:#aed581;
+background:#190061;
 margin:0px auto;
 }
 .tab_bar{
 width:100%;
 height:10%;
-background:#59af50;
+padding-bottom:5px;
 }
 
 .tab_name{
-width:33.33%;
+width:25%;
 height:100%;
 color:#fff;
 float:left;
@@ -51,16 +51,12 @@ padding-top:10px;
 }
 
 .tab_name:hover{
-background:#85b887;
+background:#3500D3;
 transition:2s ease;
 }
 .active{
-background:#85b887;
+background:#3500D3;
 }
-
-
-
-
 
 .txt_article {
    overflow: hidden;
@@ -74,10 +70,8 @@ background:#85b887;
 
 .card_main {
   width: 100%;
-  margin-left:12px;
-  
+  margin-left:12px; 
 }
-
 
 .delete_class {
   width: 18em;
@@ -100,7 +94,6 @@ background:#85b887;
 .txt_title {
   font-size: 1.1em;
   text-align:left;
-
 }
 
 .txt_post_type {
@@ -121,7 +114,6 @@ background:#85b887;
   height: auto;
   background-color: #00897B;
 }
-
 
 .card_image {
   margin-right: 16px;
@@ -173,18 +165,20 @@ background:#85b887;
 </head>
 <body>
 <div class='header'>
-<h2 class ='name'>CODEWORD</h2>
-<a href='logout.php' style='text-decoration:none;'><h2 class ='name' style='float:right;'>Logout</h2></a>
+<!--<h2 id='name'>CODEWORD</h2>-->
+<img src="img.jpg" alt="img" style="float:center;width:200px;height:64px;">
+<a href='logout.php' style='text-decoration:none;'><h2 class ='name' style='float:right;color:#fff;'>Logout</h2></a>
 
 </div>
 <div class='body'>
-<h1 style='color:#9d9d9d;padding-left:22px; '>Instructor Dashboard</h1>
+<h1 style='color:#00000;padding-left:530px; '>Instructor Dashboard</h1>
 
 <div class='body_main'>
 <div class='tab_bar'>
 <a href='instructor_dashboard.php' style='text-decoration:none;'><h3 class='tab_name'>Add Course</h3></a>
 <a href='#' style='text-decoration:none;'><h3 class='tab_name active'>Course</h3></a>
 <a href='instructor_dashboard_codeword.php' style='text-decoration:none;'><h3 class='tab_name'>Codeword</h3></a>
+<a href='student_dashboard.php' style='text-decoration:none;'><h3 class='tab_name'>Student Dashboard</h3></a>
 </div>
 <div class='card_view_bar'>
 <?php
@@ -245,7 +239,6 @@ $query2 = mysqli_query($db, $query) or die('error querying db');
 
 ?>
 </div><!-- card view bar end inside this comes all course details -->
-
 
 </div>
 </div>
