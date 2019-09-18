@@ -8,6 +8,19 @@ session_start();
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     $is_instructor = $_POST['is_instructor'];
+    if($password!=$confirm_password || strlen($password) <6 ){
+        include 'index.php';
+        echo "<script type='text/javascript'>alert('Check Password, Password length must be greater than 5 charectors');</script>";
+    }else{
+        $db = mysqli_connect('localhost', 'root', 'root', 'gdp') or die('error connecting to mysql db');
+        $query = "select * from user_details where email='$email'";
+        $query2 = mysqli_query($db, $query) or die('error querying db');
+        while($row = mysqli_fetch_array($query2))
+		{
+			$email_db = $row['email']; 					
+        }
+        
+    }
 <html>
     <head>
         <title>User Registaration</title>
@@ -22,22 +35,5 @@ session_start();
                         <input type="text" name="username">
                     </div>
                     <div>
-                        <label for= "email">Email : </label>
-                        <input type="email" name="email">
-                    </div>
-                    <div>
-                        <label for= "password">Password : </label>
-                        <input type="password" name="password_1">
-                    </div>
-                    <div>
-                        <label for= "password">Confirm Password : </label>
-                        <input type="password" name="password_2">
-                    </div>
-                    <button type="submit" name="reg_user">Submit</button>
-                    <p>Already have an account<a href="login.php"><b>Log in</b></a></p>
-                </form>
-            </div>
-        </div>
-    </body>
-</html>
+    
 ?>
