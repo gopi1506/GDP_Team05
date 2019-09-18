@@ -15,25 +15,25 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#59af50;
+background:#0c0032;
 margin-bottom:12px;
 }
 .name{
 margin:0px;
 padding:22px 22px 0px 10px;
-color:#fff;
+color:#240090;
 float:left;
 }
 .body{
 width:90%;
 height:85%;
 margin:0px auto;
-background:#dcedc8;
+background:#190061;
 }
 .body_header{
 width:100%;
 height:15%;
-background:#59af50;
+background:#fff;
 }
 .top{
 width:100%;
@@ -60,7 +60,8 @@ padding-left:12px;
 </head>
 <body>
 <div class='header'>
-<h2 class ='name'>CODEWORD</h2>
+<!--<h2 id='name'>CODEWORD</h2>-->
+<img src="img.jpg" alt="img" style="float:center;width:200px;height:64px;">
 <a href='logout.php' style='text-decoration:none;'><h2 class ='name' style='float:right;'>Logout</h2></a>
 </div>
 <div class='body'>
