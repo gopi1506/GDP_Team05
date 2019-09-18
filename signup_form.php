@@ -19,21 +19,10 @@ session_start();
 		{
 			$email_db = $row['email']; 					
         }
-        
+        if($email_db == $email){
+            echo "<script>alert('You are already registered');</script>";
+                        include 'login.php';
+            
+        }
     }
-<html>
-    <head>
-        <title>User Registaration</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h2>Register</h2>
-                <form action="signup_form.php" method="post">
-                    <div>
-                        <label for= "username">User Name : </label>
-                        <input type="text" name="username">
-                    </div>
-                    <div>
-    
 ?>
