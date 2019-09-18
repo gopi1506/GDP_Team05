@@ -1,7 +1,9 @@
 <?php
 session_start();
 ?>
-
+<?php
+error_reporting(0);
+?>
 <html>
 <head>
 <title>Instructor Dashboard</title>
@@ -13,33 +15,35 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#b3b3b3;
+background:#59af50;
 }
 .name{
 margin:0px;
-padding:20px 20px;
-color:#000000;
+padding:22px 22px 0px 10px;
+color:#fff;
 float:left;
 }
 .body{
 width:100%;
-height:80%;
+height:90%;
 }
 .body_main{
-width:100%;
-height:80%;
-background:#4d4d4d;
+
+width:90%;
+height:85%;
+background:#aed581;
 margin:0px auto;
 }
 .tab_bar{
 width:100%;
 height:10%;
+background:#59af50;
 }
 
 .tab_name{
-width:25%;
+width:33.33%;
 height:100%;
-color:#cccccc;
+color:#fff;
 float:left;
 text-align:center;
 margin:0px;
@@ -47,13 +51,13 @@ padding-top:10px;
 }
 
 .tab_name:hover{
-background:#cccccc;
-transition:1s ease;
+background:#85b887;
+transition:2s ease;
 }
 .active{
-background:#cccccc;
-color:#000000;
+background:#85b887;
 }
+
 
 </style>
 </head>
@@ -73,6 +77,13 @@ color:#000000;
 <a href='#' style='text-decoration:none;'><h3 class='tab_name active'>Codeword</h3></a>
 </div>
 <div class='card_view_bar'></div>
+
+
+
+
+
+
+
 </div>
 </div>
 </body>
