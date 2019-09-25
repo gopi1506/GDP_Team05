@@ -13,32 +13,33 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#0c0032;
+background:#265ca7;
 }
 .name{
 margin:0px;
-padding:20px 20px;
-color:#240090;
+padding:22px 22px 0px 10px;
+color:#fff;
 float:left;
 }
 .body{
 width:100%;
-height:80%;
+height:90%;
 }
 .body_main{
-width:100%;
-height:80%;
-background:#190061;
+
+width:90%;
+height:85%;
+background:#bbd7ff;
 margin:0px auto;
 }
 .tab_bar{
 width:100%;
 height:10%;
-padding-bottom:5px;
+background:#265ca7;
 }
 
 .tab_name{
-width:25%;
+width:33.33%;
 height:100%;
 color:#fff;
 float:left;
@@ -48,12 +49,11 @@ padding-top:10px;
 }
 
 .tab_name:hover{
-background:#3500D3;
-transition:1s ease;
+background:#85b887;
+transition:2s ease;
 }
-
 .active{
-background:#3500D3;
+background:#94b1ee;
 }
 
 </style>
@@ -62,15 +62,22 @@ background:#3500D3;
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <script>
 $(function() {
-  $('input[name="daterange"]').daterangepicker({
+  $('input[name="date"]').daterangepicker({
     opens: 'left'
   }, function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
 });
 </script>
+
+</head>
 
 </head>
 <body>
