@@ -15,25 +15,25 @@ padding:0px;
 .header{
 width:100%;
 height:10%;
-background:#0c0032;
+background:#59af50;
 margin-bottom:12px;
 }
 .name{
 margin:0px;
 padding:22px 22px 0px 10px;
-color:#240090;
+color:#fff;
 float:left;
 }
 .body{
 width:90%;
 height:85%;
 margin:0px auto;
-background:#190061;
+background:#dcedc8;
 }
 .body_header{
 width:100%;
 height:15%;
-background:#fff;
+background:#59af50;
 }
 .top{
 width:100%;
