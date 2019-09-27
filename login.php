@@ -1,14 +1,17 @@
 <?php
 session_start();
 ?>
+<?php
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="images/icons/N.jpg"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -37,7 +40,7 @@ session_start();
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action='login_form.php' method='post'>
 					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
+						<img src="images/icons/logo.png" width="80" height="80"/>
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
@@ -45,25 +48,30 @@ session_start();
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="email" name="email" placeholder="Username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
-					
+				
+
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
-					</div>
-
-					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
+                    </div>
+                    <div class="text-center p-t-20">
+                    <a class="txt1" href="#">
 							Forgot Password?
+                        </a>
+                    </div>
+		<div class="text-center p-t-20">Dont have an account ? 
+                    <a class="txt1" href="index.php">
+						Sign Up
 						</a>
 					</div>
 				</form>
