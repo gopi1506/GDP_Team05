@@ -4,86 +4,60 @@ session_start();
 <?php
 error_reporting(0);
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Signup</title>
-<style>
-body{
-margin:0px;
-padding:0px;
-}
-.header{
-width:100%;
-height:10%;
-background:#0c0032;
-}
-.body{
-width:100%;
-height:90%;
-background:#190061;
-}
-
-#name{
-margin:0px;
-padding:22px 0px 0px 10px;
-color:#240090;
-}
-
-.signup{
-width:50%;
-height:60%;
-padding-top:30px;
-}
-.mini-header{
-width:100%;
-height:10%;
-background:#282828;
-}
-.mini-body{
-width:100%;
-height:95%;
-background:#3500D3;
-}
-.form_input{
-width:80%;
-height:8%;
-border:0px;
-margin:8px 0px 8px 0px;
-padding-left:4px;
-}
-
-</style>
+	<title>Sign Up</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
+ 
 <body>
+<div class="wrap-input100 validate-input" data-validate = "Enter first name">
+						<input class="input100" type="text" name="first_name" placeholder="First Name">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate = "Enter last name">
+						<input class="input100" type="text" name="last_name" placeholder="Last Name">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
 
-<div class='header'>
-<!--<h2 id='name'>CODEWORD</h2>-->
-<img src="img.jpg" alt="img" style="float:center;width:200px;height:65px;">
-</div>
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Email">
+						<input class="input100" type="email" name="email" placeholder="Email">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
 
-
-<div class='body'>
-
-<center><div class='signup'>
-
-<div class='mini-header'>
-<h2 style='color:#fff;padding-top:5px;'>SIGN UP</h2>
-</div>
-<div class='mini-body'>
-
-<form action='signup_form.php' method='post'>
-<input type='text' placeholder='First Name' name='first_name' class='form_input'required/><br>
-<input type='text' placeholder='Last Name' name='last_name' class='form_input' required/><br>
-<input type='email' placeholder='Email' name='email' class='form_input' required/><br>
-<input type='password' placeholder='Password' name='password' class='form_input' required/><br>
-<input type='password' placeholder='Confirm Password' name='confirm_password' class='form_input' required/><br>
-<input type="checkbox" name="is_instructor" value='Instructor'><h5 style='margin:6px 0px 6px 0px;'> Required Instructor access ?</h5><br>
-<input type='submit' value='Sign Up' style='background:#282828;color:#fff;width:30%;height:8%;margin:6px 0px 6px 0px;'/>
-</form>
-
-<a href='login.php' style='text-decoration:none;float:center;'><h4 style='color:#fff;margin:0px;'>Existing User? LogIn here</h4></a>
-</div>
-</div></center>
-</div>
-</body>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="confirm_password" placeholder="Confirm Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+  </body>
 </html>
