@@ -26,21 +26,46 @@ error_reporting(0);
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-    <div class="logo">
-        <a href="#" class="simple-text logo-normal">
-        <?php
-          $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-          $query = "select * from user_details where email='$email'";
-          $query2 = mysqli_query($db, $query) or die('error querying db');
-          while($row = mysqli_fetch_array($query2))
-          {
-          $first_name = $row['first_name'];
-          $last_name = $row['last_name'];
-          echo $first_name." ".$last_name;
-          }//end of while loop  
-          ?>
-        </a>
+      <div class="logo">
+          <a href="#" class="simple-text logo-normal">
+          <?php
+            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+            $query = "select * from user_details where email='$email'";
+            $query2 = mysqli_query($db, $query) or die('error querying db');
+            while($row = mysqli_fetch_array($query2))
+            {
+            $first_name = $row['first_name'];
+            $last_name = $row['last_name'];
+            echo $first_name." ".$last_name;
+            }//end of while loop  
+            ?>
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item active  ">
+              <a class="nav-link" href="student_dashboard.php">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#">
+                <i class="material-icons">person</i>
+                <p>Request Instructor</p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="#">Student Dashboard</a>
+            </div>
+            
   <style>
 body{
 margin:0px;
