@@ -2,6 +2,11 @@
 session_start();
 ?>
 
+<?php
+$email = $_SESSION["email"];
+error_reporting(0);
+?>
+
 <html>
 <head>
 <title>Student Dashboard</title>
