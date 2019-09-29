@@ -65,7 +65,21 @@ error_reporting(0);
             <div class="navbar-wrapper">
               <a class="navbar-brand" href="#">Student Dashboard</a>
             </div>
-            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form"></form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                  <i class="material-icons">logout</i>
+                  <p class="d-lg-none d-md-block">
+                    Logout
+                  </p>
   <style>
 body{
 margin:0px;
