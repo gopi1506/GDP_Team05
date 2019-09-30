@@ -10,4 +10,16 @@ $published = "false";
 $instructor_email = $_SESSION["email"]; 
 
 
+$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+
+   if ( isset($_FILES["file"])) {
+   
+   
+   } else {
+             echo "No file selected <br />";
+     }
+
+include 'instructor_dashboard_codeword.php';
+echo " <script>alert('Successfully added course');</script>  ";
+
 ?>
