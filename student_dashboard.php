@@ -80,6 +80,69 @@ error_reporting(0);
                   <p class="d-lg-none d-md-block">
                     Logout
                   </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+          <?php
+          $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+          $query = "select * from course";
+          $query2 = mysqli_query($db, $query) or die('error querying db');
+          
+          while($row = mysqli_fetch_array($query2))
+          {
+          $course_name = $row['course_name'];
+          $course_code = $row['course_code'];
+          $start_date = $row['start_date'];
+          $end_date = $row['end_date'];
+          $start_survey = $row['start_survey'];
+          $end_survey = $row['end_survey'];
+          $codeword_assigned = $row['published'];
+          
+          $query3 = "select * from $course_code";
+          $query4 = mysqli_query($db, $query3) or die('error querying db');
+          while($row1 = mysqli_fetch_array($query4))
+          {
+            $email_student = $row1['email'];
+            if($email_student == $email){
+              echo "
+              <div class='col-lg-6 col-md-12 col-sm-12' id='mydiv".$inc."' style='cursor: pointer;'>
+                <div class='card'>
+                  <div class='card-header card-header-success'>
+                    <h4 class='card-title'>".$course_name."</h4>
+                    <p class='card-category' style='float:left;'>Start Date: ".$start_date."</p>
+                    <p class='card-category' style='float:right;'>End Date: ".$end_date."</p>
+                  </div>
+                  <div class='card-body table-responsive'>
+                    <table class='table'>
+                      <tbody>
+                        <tr>
+                          <td>Start Survey</td>
+                          <td>".$start_survey."</td>
+                        </tr>
+                        <tr>
+                          <td>End Survey</td>
+                          <td>".$end_survey."</td>
+                        </tr>
+                        <tr>
+                          <td>Codeword</td>
+                          <td>Not Assigned </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            
+              ";
+            
+            }//end of if statement
   <style>
 body{
 margin:0px;
