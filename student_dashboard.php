@@ -241,97 +241,21 @@ $('.fixed-plugin .active-color span').click(function() {
             $sidebar_responsive.attr('data-color', new_color);
           }
         });
-        
-.card_main {
-  width: 100%;
-  margin-left:12px;
- 
-}
+        $('.fixed-plugin .background-color .badge').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
 
+          var new_color = $(this).data('background-color');
 
-.delete_class {
-  width: 18em;
-  float:left;
-  margin-right:12px;
-}
-
-.txt_user {
-  margin: 0px 16px 8px 16px;
-  padding-top: 16px;
-  font-size: 120%;
-}
-
-.txt_user_description {
-  margin: 0px 16px 0px 16px;
-  padding-bottom: 16px;
-  font-size: 80%;
-}
-
-.txt_title {
-  font-size: 1.1em;
-  text-align:left;
-
-}
-
-.txt_post_type {
-  color: #ffffff;
-  margin: 0px;
-  font-family: roboto;
-  font-weight: 400;
-  padding: 8px 16px;
-}
-
-.post_header {
-  color: #ffffff;
-  position: relative;
-  margin-top: 0px;
-  width: 100%;
-  box-shadow: 0px 4px 8px rgba(0,0,0,.4);
-  border-radius: 8px 8px 0px 0px;
-  height: auto;
-  background-color: #00897B;
-}
-
-
-.card_image {
-  margin-right: 16px;
-  position: absolute;
-  right: 0;
-  z-index: 1;
-  top: -1em;
-  width: 36%;
-  border-radius: 50%;
-  box-shadow: 0px 4px 6px rgba(0,0,0,.5);
-}
-
-.card_content {
-  position: relative;
-  background: #ffffff;
-  margin: 0px;
-  border-radius: 0px 0px 8px 8px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-  max-width: 100%;
-  height: auto;
-  padding: 4px 16px;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* Pre-render the bigger shadow, but hide it */
-
-.card_content::after {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
-  opacity: 0;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  content: "";
-  border-radius: 8px;
-  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-background-color', new_color);
+          }
+        });
+        $('.fixed-plugin .img-holder').click(function() {
+          $full_page_background = $('.full-page-background');
+          $(this).parent('li').siblings().removeClass('active');
+          $(this).parent('li').addClass('active');
+          var new_image = $(this).find("img").attr('src');
 
 /* Transition to showing the bigger shadow on hover */
 
