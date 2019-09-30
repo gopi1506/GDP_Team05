@@ -256,62 +256,43 @@ $('.fixed-plugin .active-color span').click(function() {
           $(this).parent('li').siblings().removeClass('active');
           $(this).parent('li').addClass('active');
           var new_image = $(this).find("img").attr('src');
+          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            $sidebar_img_container.fadeOut('fast', function() {
+              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+              $sidebar_img_container.fadeIn('fast');
+            });
+          }
+          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+            $full_page_background.fadeOut('fast', function() {
+              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+              $full_page_background.fadeIn('fast');
+            });
+          }
+          if ($('.switch-sidebar-image input:checked').length == 0) {
+            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
-/* Transition to showing the bigger shadow on hover */
-
-.card_content:hover::after, .post_header:hover + .card_content::after{
-  opacity: 1;
-}
-
-</style>
-</head>
-<body>
-<div class='header'>
-<h2 class ='name'>CODEWORD</h2>
-<a href='logout.php' style='text-decoration:none;'><h2 class ='name' style='float:right;'>Logout</h2></a>
-
-</div>
-<div class='body'>
-<h1 style='color:#9d9d9d;padding-left:22px; '>Student Dashboard</h1>
-
-<div class='body_main'>
-
-<div class='card_view_bar'>
-<?php
-
-$email = $_SESSION["email"];
-
-
-$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-$query = "select * from course";
-$query2 = mysqli_query($db, $query) or die('error querying db');
-
-while($row = mysqli_fetch_array($query2))
-{
-$course_name = $row['course_name'];
-$course_code = $row['course_code'];
-$start_date = $row['start_date'];
-$end_date = $row['end_date'];
-$start_survey = $row['start_survey'];
-$end_survey = $row['end_survey'];
-$codeword_assigned = $row['published'];
-
-$query3 = "select * from $course_code";
-$query4 = mysqli_query($db, $query3) or die('error querying db');
-while($row1 = mysqli_fetch_array($query4))
-{
-$email_student = $row1['email'];
-
-if($email_student == $email){
-
-
-echo  "<div class='delete_class'>";
-echo "<div class='card_main'>";
-
-  echo "<div class='post_header'>";
-  echo "<p class='txt_user'>".$course_name."</p>";
-  echo "<p class='txt_user_description'>Start Date: ".$start_date."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: ".$end_date."</p>";
-    echo "</div>";
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+          }
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+          }
+        });
+        $('.switch-sidebar-image input').change(function() {
+          $full_page_background = $('.full-page-background');
+          $input = $(this);
+          if ($input.is(':checked')) {
+            if ($sidebar_img_container.length != 0) {
+              $sidebar_img_container.fadeIn('fast');
+              $sidebar.attr('data-image', '#');
+            }
+            if ($full_page_background.length != 0) {
+              $full_page_background.fadeIn('fast');
+              $full_page.attr('data-image', '#');
+            }
+            
 echo "<div class='card_content'>";
   echo "<p class='txt_title'>Codeword: </p>";
   echo "<p class='txt_title'>Start Link: ".$start_survey."</p>";
