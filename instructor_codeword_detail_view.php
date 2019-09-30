@@ -93,6 +93,47 @@ session_start();
         </div>
       </nav>
       <!-- End Navbar -->
+	<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">dashboard</i>
+                  </div>
+                  <p class="card-category">Number of courses</p>
+                  <h3 class="card-title">
+                  <?php
+                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+ $query = "select * from course where instructor_email='$email'";
+ $query2 = mysqli_query($db, $query) or die('error querying db');
+ $rowcount=mysqli_num_rows($query2);
+ echo $rowcount;
+                  ?>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">library_books</i>
+                  </div>
+                  <p class="card-category">Number of codewords</p>
+                  <h3 class="card-title">0</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+         
+         
+          <?php
+            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query = "select * from course where instructor_email='$email'";
+$query2 = mysqli_query($db, $query) or die('error querying db');
 	  <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
