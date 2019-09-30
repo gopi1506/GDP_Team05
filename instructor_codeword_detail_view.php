@@ -1,6 +1,12 @@
 <?php
 session_start();
 ?>
+<?php
+$email = $_SESSION["email"];
+$codewordset_code = $_POST['codewordset_code'];
+error_reporting(0);
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +24,15 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-  </head>
-  
- <body class="">
+</head>
+
+<body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-    <div class="logo">
+
+      <div class="logo">
         <a href="#" class="simple-text logo-normal">
           <?php
           $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
@@ -39,9 +47,7 @@ session_start();
           ?>
         </a>
       </div>
-	    
-	    
-    <div class="sidebar-wrapper">
+      <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard.php">
@@ -64,7 +70,8 @@ session_start();
         </ul>
       </div>
     </div>
-<div class="main-panel">
+    ****************************************
+    <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
@@ -93,112 +100,129 @@ session_start();
         </div>
       </nav>
       <!-- End Navbar -->
-	<div class="content">
+      <div class="content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">dashboard</i>
-                  </div>
-                  <p class="card-category">Number of courses</p>
-                  <h3 class="card-title">
-                  <?php
-                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
- $query = "select * from course where instructor_email='$email'";
- $query2 = mysqli_query($db, $query) or die('error querying db');
- $rowcount=mysqli_num_rows($query2);
- echo $rowcount;
-                  ?>
-                  </h3>
-                </div>
-              </div>
-            </div>
+		<div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">library_books</i>
+                    <i class="material-icons">ballot</i>
                   </div>
-                  <p class="card-category">Number of codewords</p>
-                  <h3 class="card-title">0</h3>
+                  <p class="card-category">Number of Codewords</p>
+                  <h5 class="card-title">
+                  <?php
+				  $query3 = "select * from ".$codewordset_code;
+          $query4 = mysqli_query($db, $query3) or die('error querying db');
+          $rowcount=mysqli_num_rows($query4);
+          echo $rowcount;
+                  ?>
+                  </h5>
                 </div>
               </div>
             </div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">report</i>
+                  </div>
+                  <p class="card-category">Report</p>
+                  <h5 class="card-title">Soft Rules</h5>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <div class="row">
-         
-         
-          <?php
-            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-$query = "select * from course where instructor_email='$email'";
-$query2 = mysqli_query($db, $query) or die('error querying db');
-		  
-while($row = mysqli_fetch_array($query2))
-{
-$course_name = $row['course_name'];
-$course_code = $row['course_code'];
-$start_date = $row['start_date'];
-$end_date = $row['end_date'];
-$start_survey = $row['start_survey'];
-$end_survey = $row['end_survey'];
-$codeword_assigned = $row['published'];
-$published = "";
-$background = "";
-         
-          if($codeword_assigned == 'false'){
-  $published = "Not assigned";
-  $background = "card-header-danger";
-  }else{
-  $published = "Assigned";
-  $background = "card-header-success";
-  }//end of if else statement
-         $inc = $inc + 1;
-          echo "
-          <form action='instructor_course_detail_view.php' method='post' id='myform".$inc."'>
-          <input type='hidden' name='course_code' value='".$course_code."'/>
-          </form>
-            <div class='col-lg-6 col-md-12 col-sm-12' id='mydiv".$inc."' style='cursor: pointer;'>
-              <div class='card'>
-                <div class='card-header card-header-success'>
-                  <h4 class='card-title'>".$course_name."</h4>
-                  <p class='card-category' style='float:left;'>Start Date: ".$start_date."</p>
-                  <p class='card-category' style='float:right;'>End Date: ".$end_date."</p>
-                </div>
-                <div class='card-body table-responsive'>
-                  <table class='table'>
-                    <tbody>
-                      <tr>
-                        <td>Start Survey</td>
-                        <td>".$start_survey."</td>
-                      </tr>
-                      <tr>
-                        <td>End Survey</td>
-                        <td>".$end_survey."</td>
-                      </tr>
-                      <tr>
-                        <td>Acknowledged</td>
-                        <td>0</td>
-                      </tr>
-                      <tr class='".$background." center'>
-                        <td>".$published."</td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+
+         	<?php
+        
+
+		 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+		 $query = "select * from codewordset where codewordset_code='$codewordset_code'";
+		 $query2 = mysqli_query($db, $query) or die('error querying db');
+						 while($row = mysqli_fetch_array($query2))
+							 {
+								 $codewordset_name = $row['codewordset_name'];
+								 $published = $row['published'];
+								
+								 echo "
+								
+								 <div class='card'>
+            <div class='card-header card-header-primary'>
+              <h4 class='card-title'>".$codewordset_name."</h4>
+            </div>
+            <div class='card-body'>
+              <div id='typography'>
+				<div class='card-title'>
+				<form action='delete_codeword.php' method='post' >
+				<input type='hidden' value='".$codewordset_code."' name='course_code'/>
+				<button type='submit' class='btn btn-danger pull-right' disabled>Delete Codewordset</button>
+				</form>
+				<form method='post' action='#'>
+				<input type='hidden' value=''/>
+				<button type='submit' class='btn btn-warning pull-right' disabled>Edit Codewordset</button>
+				</form>
+				<form method='post' action='#'>
+				<input type='hidden' value=''/>
+				<button type='submit' class='btn btn-primary pull-right' disabled>Publish Codewordset</button>
+				</form>
+				</div>
+				<div class='clearfix'></div>
+                <div class='row'>
+				<div class='card-body table-responsive'>
+				<table class='table'>
+				<thead class='text-primary'>
+				<th>Codeword</th>
+				<th>Assign</th>
+			  </thead>
+				  <tbody>";
+				  $query3 = "select * from ".$codewordset_code;
+				  $query4 = mysqli_query($db, $query3) or die('error querying db');
+
+		  while($row = mysqli_fetch_array($query4))
+			  {
+				  
+				  $name = $row['codeword'];
+				  $assign = $row['assign'];
+				  echo "<tr>";
+				  echo "<td>".$name."</td>";
+				  echo "<td>".$assign."</td>";
+				  echo "</tr>";
+			  }//end of inner while loop	
+			  }//end of while loop
+
+
+
+			echo  " </tbody>
+				</table>
+			  </div>
+
+             </div>
               </div>
             </div>
-          
-            ";
-            }//end of while loop
-	  <!--   Core JS Files   -->
+          </div>				
+								 ";
+
+
+			?>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+<!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-	  <!-- Plugin for the momentJs  -->
+  <!-- Plugin for the momentJs  -->
   <script src="assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Sweet Alert -->
   <script src="assets/js/plugins/sweetalert2.js"></script>
@@ -234,6 +258,3 @@ $background = "";
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-  </body>
-</html>
- 
