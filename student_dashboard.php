@@ -221,29 +221,27 @@ $('.fixed-plugin a').click(function(event) {
     }
   }
 });
+$('.fixed-plugin .active-color span').click(function() {
+          $full_page_background = $('.full-page-background');
 
-.tab_name:hover{
-background:#85b887;
-transition:2s ease;
-}
-.active{
-background:#85b887;
-}
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
 
+          var new_color = $(this).data('color');
 
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-color', new_color);
+          }
 
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
 
-
-.txt_article {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-box-orient: vertical;
-   line-height: 1.4em;        /* fallback */
-   max-height: 4.2em;       /* fallback */
-   -webkit-line-clamp: 3; /* number of lines to show */
-}
-
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data-color', new_color);
+          }
+        });
+        
 .card_main {
   width: 100%;
   margin-left:12px;
