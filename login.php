@@ -11,7 +11,7 @@ error_reporting(0);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/N.jpg"/>
+	<link rel="icon" type="image/png" href="images/icons/N.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -44,7 +44,7 @@ error_reporting(0);
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						LogIn
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
@@ -69,7 +69,8 @@ error_reporting(0);
 							Forgot Password?
                         </a>
                     </div>
-		<div class="text-center p-t-20">Dont have an account ? 
+					<div class="text-center p-t-20">
+					<div class="text-center p-t-20">Dont have an account ? 
                     <a class="txt1" href="index.php">
 						Sign Up
 						</a>
