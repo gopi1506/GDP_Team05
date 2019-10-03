@@ -30,11 +30,7 @@ $inc = 0;
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-        Tip 2: you can also add an image using data-image tag
-    -->
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
           <?php
@@ -53,7 +49,7 @@ $last_name = $row['last_name'];
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="./dashboard.html">
+            <a class="nav-link" href="instructor_dashboard.php">
               <i class="material-icons">dashboard</i>
               <p>Course</p>
             </a>
@@ -115,10 +111,10 @@ $last_name = $row['last_name'];
                   <h3 class="card-title">
                   <?php
                   $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
- $query = "select * from course where instructor_email='$email'";
- $query2 = mysqli_query($db, $query) or die('error querying db');
- $rowcount=mysqli_num_rows($query2);
- echo $rowcount;
+                  $query = "select * from course where instructor_email='$email'";
+                  $query2 = mysqli_query($db, $query) or die('error querying db');
+                  $rowcount=mysqli_num_rows($query2);
+                  echo $rowcount;
                   ?>
                   </h3>
                 </div>
@@ -130,7 +126,7 @@ $last_name = $row['last_name'];
                   <div class="card-icon">
                     <i class="material-icons">library_books</i>
                   </div>
-                  <p class="card-category">Number of codewords</p>
+                  <p class="card-category">Number of codewordsets</p>
                   <h3 class="card-title">0</h3>
                 </div>
               </div>
