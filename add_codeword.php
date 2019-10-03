@@ -9,11 +9,11 @@ $created_at = date("m/d/Y");
 $published = "false";
 $instructor_email = $_SESSION["email"]; 
 
-
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
 
    if ( isset($_FILES["file"])) {
-               //if there was an error uploading the file
+
+            //if there was an error uploading the file
         if ($_FILES["file"]["error"] > 0) {
             echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 
@@ -53,12 +53,14 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
             
             }
         }
-   
-   } else {
+     } else {
              echo "No file selected <br />";
      }
 
 include 'instructor_dashboard_codeword.php';
 echo " <script>alert('Successfully added course');</script>  ";
+
+
+
 
 ?>
