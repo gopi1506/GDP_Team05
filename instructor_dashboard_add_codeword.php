@@ -28,14 +28,14 @@ error_reporting(0);
 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
-  
-  <body class="">
+
+<body class="">
   <div class="wrapper ">
   <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
-           <?php
+          <?php
           $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
  $query = "select * from user_details where email='$email'";
      $query2 = mysqli_query($db, $query) or die('error querying db');
@@ -46,7 +46,7 @@ $last_name = $row['last_name'];
           echo $first_name." ".$last_name;
           }//end of while loop  
           ?>
-          </a>
+        </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -377,7 +377,7 @@ $last_name = $row['last_name'];
       });
     });
   </script>
-  <script>
+<script>
 $(function() {
   $('input[name="date"]').daterangepicker({
     opens: 'left'
@@ -386,6 +386,8 @@ $(function() {
   });
 });
 </script>
+
+
 
 
 </body>
