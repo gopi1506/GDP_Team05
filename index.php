@@ -7,11 +7,11 @@ error_reporting(0);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Sign Up</title>
+	<title>SignUp</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/N.jpg"/>
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -44,7 +44,7 @@ error_reporting(0);
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Sign up
+						Signup
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter first name">
@@ -78,9 +78,9 @@ error_reporting(0);
 						</button>
 					</div>
 
-					<div class="text-center p-t-20">Existing User ?
-						<a class="txt1" href="login.php" >
-						   Log In 
+					<div class="text-center p-t-20">
+						<a class="txt1" href="login.php">
+							Already have an account?LogIn
 						</a>
 					</div>
 				</form>
