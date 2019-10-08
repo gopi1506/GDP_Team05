@@ -27,27 +27,43 @@ $inc = 0;
   <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
     
-    
-    <body>
-        <div class='header'>
-        <!--<h2 id='name'>CODEWORD</h2>-->
-        <img src="img.jpg" alt="img" style="float:center;width:200px;height:64px;">
-        <a href='logout.php' style='text-decoration:none;'><h2 class ='name' style='float:right;color:#fff;'>Logout</h2></a>
-        </div>
-        <div class='body'>
-            <h1 style='color:#00000;padding-left:530px; '>Admin Dashboard</h1>
-            <div class='body_main'>
-                <div class='tab_bar'>
-                    <a href='#' style='text-decoration:none;'><h3 class='tab_name active'>Instructor Requests</h3></a>
-                    <a href='#' style='text-decoration:none;'><h3 class='tab_name active'>Managa Profiles</h3></a>
-                </div>
-                <div class='card_view_bar'>
-                </div>
-                <center>
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
-                </center>
-            </div>
-        </div>
+      <div class="logo">
+        <a href="#" class="simple-text logo-normal">
+          <?php
+          $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+ $query = "select * from user_details where email='$email'";
+     $query2 = mysqli_query($db, $query) or die('error querying db');
+while($row = mysqli_fetch_array($query2))
+{
+$first_name = $row['first_name'];
+$last_name = $row['last_name'];
+          echo $first_name." ".$last_name;
+          }//end of while loop  
+          ?>
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active  ">
+            <a class="nav-link" href="instructor_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_codeword.php">
+              <i class="material-icons">library_books</i>
+              <p>Codeword</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
       <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
