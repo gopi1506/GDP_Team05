@@ -92,6 +92,120 @@ $last_name = $row['last_name'];
         </div>
       </nav>
       <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">dashboard</i>
+                  </div>
+                  <p class="card-category">Instructor requests pending</p>
+                  <h3 class="card-title">
+                  <?php
+                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+                  $query = "select * from admin where ack='false'";
+                  $query2 = mysqli_query($db, $query) or die('error querying db');
+                  $rowcount=mysqli_num_rows($query2);
+                  echo $rowcount;
+                  ?>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">library_books</i>
+                  </div>
+                  <p class="card-category">Number of codewordsets</p>
+                  <h3 class="card-title">
+                  <?php
+                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+                  $query = "select * from codewordset where instructor_email='$email'";
+                  $query2 = mysqli_query($db, $query) or die('error querying db');
+                  $rowcount=mysqli_num_rows($query2);
+                  echo $rowcount;
+                  ?>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+         <?php
+            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query = "select * from course where instructor_email='$email'";
+$query2 = mysqli_query($db, $query) or die('error querying db');
+
+while($row = mysqli_fetch_array($query2))
+{
+$course_name = $row['course_name'];
+$course_code = $row['course_code'];
+$start_date = $row['start_date'];
+$end_date = $row['end_date'];
+$start_survey = $row['start_survey'];
+$end_survey = $row['end_survey'];
+$codeword_assigned = $row['published'];
+$published = "";
+$background = "";
+         
+          if($codeword_assigned == 'false'){
+  $published = "Not assigned";
+  $background = "card-header-danger";
+  }else{
+  $published = "Assigned";
+  $background = "card-header-success";
+  }//end of if else statement
+         $inc = $inc + 1;
+          echo "
+          <form action='instructor_course_detail_view.php' method='post' id='myform".$inc."'>
+          <input type='hidden' name='course_code' value='".$course_code."'/>
+          </form>
+            <div class='col-lg-6 col-md-12 col-sm-12' id='mydiv".$inc."' style='cursor: pointer;'>
+              <div class='card'>
+                <div class='card-header card-header-success'>
+                  <h4 class='card-title'>".$course_name."</h4>
+                  <p class='card-category' style='float:left;'>Start Date: ".$start_date."</p>
+                  <p class='card-category' style='float:right;'>End Date: ".$end_date."</p>
+                </div>
+                <div class='card-body table-responsive'>
+                  <table class='table'>
+                    <tbody>
+                      <tr>
+                        <td>Start Survey</td>
+                        <td>".$start_survey."</td>
+                      </tr>
+                      <tr>
+                        <td>End Survey</td>
+                        <td>".$end_survey."</td>
+                      </tr>
+                      <tr>
+                        <td>Acknowledged</td>
+                        <td>0</td>
+                      </tr>
+                      <tr class='".$background." center'>
+                        <td>".$published."</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          
+            ";
+            }//end of while loop
+            ?>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
