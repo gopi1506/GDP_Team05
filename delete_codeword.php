@@ -6,8 +6,6 @@ error_reporting(0);
 
 $codewordset_code = $_POST['codewordset_code'];
 
-$codewordset_code = $_POST['codewordset_code'];
-
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
 $query = "drop table ".$codewordset_code."";
 $query1 = "delete from codewordset where codewordset_code='$codewordset_code'";

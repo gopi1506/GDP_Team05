@@ -53,7 +53,7 @@ $last_name = $row['last_name'];
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard.php">
               <i class="material-icons">dashboard</i>
-              <p>Course</p>
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">

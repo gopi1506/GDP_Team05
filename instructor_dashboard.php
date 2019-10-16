@@ -51,7 +51,7 @@ $last_name = $row['last_name'];
           <li class="nav-item active  ">
             <a class="nav-link" href="instructor_dashboard.php">
               <i class="material-icons">dashboard</i>
-              <p>Course</p>
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -127,7 +127,15 @@ $last_name = $row['last_name'];
                     <i class="material-icons">library_books</i>
                   </div>
                   <p class="card-category">Number of codewordsets</p>
-                  <h3 class="card-title">0</h3>
+                  <h3 class="card-title">
+                  <?php
+                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+                  $query = "select * from codewordset where instructor_email='$email'";
+                  $query2 = mysqli_query($db, $query) or die('error querying db');
+                  $rowcount=mysqli_num_rows($query2);
+                  echo $rowcount;
+                  ?>
+                  </h3>
                 </div>
               </div>
             </div>

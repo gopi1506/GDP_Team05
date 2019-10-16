@@ -52,7 +52,7 @@ error_reporting(0);
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard.php">
               <i class="material-icons">dashboard</i>
-              <p>Course</p>
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -157,8 +157,8 @@ error_reporting(0);
               <div id='typography'>
 				<div class='card-title'>
 				<form action='delete_codeword.php' method='post' >
-				<input type='hidden' value='".$codewordset_code."' name='course_code'/>
-				<button type='submit' class='btn btn-danger pull-right' disabled>Delete Codewordset</button>
+				<input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
+				<button type='submit' class='btn btn-danger pull-right' >Delete Codewordset</button>
 				</form>
 				<form method='post' action='#'>
 				<input type='hidden' value=''/>

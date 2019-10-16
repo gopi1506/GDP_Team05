@@ -55,7 +55,7 @@ error_reporting(0);
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="request_instructor.php">
               <i class="material-icons">person</i>
               <p>Request Instructor</p>
             </a>

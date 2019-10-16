@@ -53,7 +53,7 @@ $last_name = $row['last_name'];
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard.php">
               <i class="material-icons">dashboard</i>
-              <p>Course</p>
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item active">
@@ -119,7 +119,7 @@ $last_name = $row['last_name'];
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input type="text" name="course" class="form-control" placeholder="Course Name" required>
+                          <input type="text" name="course" class="form-control" placeholder="Course Name & Section" required>
                         </div>
                       </div>
                     </div>

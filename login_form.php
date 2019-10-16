@@ -32,8 +32,10 @@ $_SESSION["role"] =  $role_db;
 
 if($role_db == "Student"){
 include 'student_dashboard.php';
-}else{
+}elseif($role_db == "Instructor"){
 include 'instructor_dashboard.php';
+}else{
+include 'admin_dashboard.php';	
 }
 
 }else{
