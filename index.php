@@ -4,6 +4,8 @@ session_start();
 <?php
 error_reporting(0);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +80,7 @@ error_reporting(0);
 						</button>
 					</div>
 
-					<div class="text-center p-t-20">Already have an account?
+					<div class="text-center p-t-20"> Existing User? 
 						<a class="txt1" href="login.php">
 							LogIn
 						</a>
