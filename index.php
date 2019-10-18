@@ -78,9 +78,9 @@ error_reporting(0);
 						</button>
 					</div>
 
-					<div class="text-center p-t-20">
+					<div class="text-center p-t-20">Already have an account?
 						<a class="txt1" href="login.php">
-							Already have an account?LogIn
+							LogIn
 						</a>
 					</div>
 				</form>
