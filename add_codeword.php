@@ -59,11 +59,12 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
                         if($i == 0){          
  			 $query5 = "insert into ".$codewordset_code."(codeword,assign) values ('$arra_stud_detai[0]','false')";
              $query6 = mysqli_query($db, $query5);
+            
             }//end of if statement
         }else{
             $length_check[] = $arra_stud_detai[0];
         }//end of length check array if-else
-
+        $i = 0;
                 }//end of while loop   
 
                 
@@ -80,9 +81,10 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
              echo "No file selected <br />";
      }
 
-include 'instructor_dashboard_codeword.php';
-echo " <script>alert('Successfully added codeword');</script>  ";
 
+     include 'hardrules_report.php';
+//include 'instructor_dashboard_codeword.php';
+echo " <script>alert('Successfully added codeword');</script>  ";
 
 
 
