@@ -29,7 +29,28 @@ session_start();
             <!-- something comes here -->
             </a>
           </div>
-          
+          <div class="sidebar-wrapper">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="instructor_dashboard.php">
+                  <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="instructor_dashboard_course.php">
+                  <i class="material-icons">content_paste</i>
+                  <p>Add Course</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="instructor_dashboard_codeword.php">
+                  <i class="material-icons">library_books</i>
+                  <p>Codeword</p>
+                </a>
+              </li>
+            </ul>
+          </div>
   <script>
     $(document).ready(function() {
       $().ready(function() {
