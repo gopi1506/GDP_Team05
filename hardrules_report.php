@@ -80,6 +80,41 @@ session_start();
               </div>
             </div>
           </nav><!-- End Navbar -->
+          <div class="content">
+            <div class="container-fluid">
+              <div class="row">	
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                        <i class="material-icons">ballot</i>
+                      </div>
+                      <p class="card-category">Length</p>
+                      <h5 class="card-title">
+                        <?php
+                          echo count($length_check);
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                        <i class="material-icons">ballot</i>
+                      </div>
+                      <p class="card-category">Duplicates</p>
+                      <h5 class="card-title">
+                        <?php
+                          echo count($dups);
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
   <script>
     $(document).ready(function() {
       $().ready(function() {
