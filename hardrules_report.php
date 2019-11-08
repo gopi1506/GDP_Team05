@@ -115,6 +115,43 @@ session_start();
                 </div>
               </div>
               <div class="row">
+                <div class='card '>
+                  <div class='card-header card-header-primary'>
+                    <h4 class='card-title'>Hard Rules Report</h4>
+                  </div>
+                  <div class='card-body'>
+                    <div id='typography'>
+				              <div class='clearfix'></div>
+                        <div class='row'>
+				                  <div class='card-body table-responsive'>
+                            <table class='table'>
+				                      <thead class='text-primary'>
+				                        <th>Length</th>
+			                        </thead>
+				                      <tbody> 
+                                <?php
+                                  foreach($length_check as $length){
+                                    echo "<tr><td>".$length."</td></tr>";
+                                  }//end of for each loop
+                                  echo "<thead class='text-primary'>
+                                  <th>Duplicates</th>
+                                  </thead>";
+                                  foreach($dups as $duplicates){
+                                    echo "<tr><td>".$duplicates."</td></tr>";
+                                  }//end of for each loop
+                                ?>
+                              </tbody>
+				                    </table>
+			                    </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>			
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   <script>
     $(document).ready(function() {
       $().ready(function() {
