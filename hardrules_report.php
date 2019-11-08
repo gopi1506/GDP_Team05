@@ -21,7 +21,15 @@ session_start();
       <!-- CSS Just for demo purpose, don't include it in your project -->
       <link href="assets/demo/demo.css" rel="stylesheet" />
     </head>
-
+    <body class="">
+      <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+          <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+            <!-- something comes here -->
+            </a>
+          </div>
+          
   <script>
     $(document).ready(function() {
       $().ready(function() {
