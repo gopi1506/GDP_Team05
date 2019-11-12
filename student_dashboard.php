@@ -24,6 +24,7 @@ error_reporting(0);
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
+  
   <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
