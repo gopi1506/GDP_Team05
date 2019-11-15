@@ -121,7 +121,11 @@ error_reporting(0);
               </div>
             </div>
 			<div class="col-lg-4 col-md-6 col-sm-6">
+             <form action='softrules_report_code.php' method='post'>
+             <input type='hidden' value=<?php echo "'".$codewordset_code."'";    ?> name='codewordset'/>
+            
               <div class="card card-stats">
+              <button style='border:0px;background:#fff;cursor:pointer;'>
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">report</i>
@@ -129,9 +133,11 @@ error_reporting(0);
                   <p class="card-category">Report</p>
                   <h5 class="card-title">Soft Rules</h5>
                 </div>
+                </button>
               </div>
             </div>
-
+  
+            </form>
 
           </div>
           <div class="row">
