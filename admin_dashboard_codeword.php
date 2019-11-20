@@ -6,6 +6,7 @@ $email = $_SESSION["email"];
 $inc = 0;
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,8 @@ $inc = 0;
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
-  
-  <body class="">
+    
+<body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
@@ -91,7 +92,43 @@ $last_name = $row['last_name'];
         </div>
       </nav>
       <!-- End Navbar -->
-  <!--   Core JS Files   -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">library_books</i>
+                  </div>
+                  <p class="card-category">Number of Codeword Set</p>
+                  <h3 class="card-title">
+                  <?php
+                    $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+                    $query = "select * from codewordset_admin where email='$email'";
+                    $query2 = mysqli_query($db, $query) or die('error querying db');
+                    $rowcount=mysqli_num_rows($query2);
+                    echo $rowcount;
+                  ?>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <a href="admin_dashboard_add_codeword.php"><div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">add_file</i>
+                  </div>
+                  <h4 class="card-title">
+                    Add Codewordset
+                  </h4>
+                </div>
+              </div></a>
+            </div>
+          </div>
+          <div class="row">
+      <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
@@ -133,6 +170,5 @@ $last_name = $row['last_name'];
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-</body>
-</html> 
-    
+    </body>
+</html>
