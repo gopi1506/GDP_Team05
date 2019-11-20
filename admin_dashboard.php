@@ -49,13 +49,13 @@ $last_name = $row['last_name'];
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="instructor_dashboard.php">
+            <a class="nav-link" href="admin_dashboard.php">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="instructor_dashboard_codeword.php">
+            <a class="nav-link" href="admin_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
               <p>Codeword</p>
             </a>
@@ -124,7 +124,7 @@ $last_name = $row['last_name'];
                   <h3 class="card-title">
                   <?php
                   $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-                  $query = "select * from codewordset where instructor_email='$email'";
+                  $query = "select * from codewordset_admin where email='$email'";
                   $query2 = mysqli_query($db, $query) or die('error querying db');
                   $rowcount=mysqli_num_rows($query2);
                   echo $rowcount;
