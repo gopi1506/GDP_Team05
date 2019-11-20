@@ -26,6 +26,7 @@ error_reporting(0);
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+  <script src="assets/js/core/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -152,7 +153,10 @@ error_reporting(0);
 							 {
 								 $codewordset_name = $row['codewordset_name'];
 								 $published = $row['published'];
-								
+                
+            
+
+
 								 echo "
 								
 								 <div class='card'>
@@ -168,11 +172,24 @@ error_reporting(0);
 				</form>
 				<form method='post' action='#'>
 				<input type='hidden' value=''/>
-				<button type='submit' class='btn btn-warning pull-right' disabled>Edit Codewordset</button>
+				<button type='submit' class='btn btn-warning pull-right' id='edit'>Edit Codewordset</button>
 				</form>
-				<form method='post' action='#'>
-				<input type='hidden' value=''/>
-				<button type='submit' class='btn btn-primary pull-right' disabled>Publish Codewordset</button>
+				<form method='post' action='publish_codeword.php'>
+        <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
+        <button type='submit' class='btn btn-primary pull-right' id='publish' >Publish Codewordset</button>
+        ";
+        if($published == "true"){
+         echo " <script> 
+         console.log('am working');
+         $('#edit').prop('disabled', 'true'); 
+         $('#publish').prop('disabled', 'true');      </script>";
+
+        }//end of if statement
+        
+
+
+        echo "
+
 				</form>
 				</div>
 				<div class='clearfix'></div>
@@ -223,7 +240,7 @@ error_reporting(0);
   </div>
 
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
+
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
