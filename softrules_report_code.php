@@ -121,7 +121,7 @@ $codeword[] = $row['codeword'];
 ?>
 
 <div class="content">
-
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
 <h3>Similarity</h3>
 <?php
 for($i=0;$i < count($codeword); $i++ ){
@@ -153,19 +153,19 @@ $similarity[] = $codeword[$i];
 
     if(count($similarity) > 1){
       //  print_r($similarity);
-
+      
+      echo "<div class='col-lg-12 col-md-12 col-sm-6'><table class='table-bordered  pull-left'>";
         for($k = 0 ; $k < count($similarity); $k++){
             //echo $similarity[$k];
             echo "
 
-            
-
-            <h5>".$similarity[$k]."</label>
-            <form action='softrules_report.php' method='post'>
+            <tr class=' text-dark'>
+<td><h4>".$similarity[$k]."</h4></td>
+            <td ><form action='softrules_report.php' method='post'>
             <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
             <input type='hidden' name='codeword' value='".$similarity[$k]."'/>
-            <input type='submit' value='submit' name='submit'/>
-            </form>
+            <input type='submit' class='text-danger button close' value='x'/>
+            </form></td></tr>
             ";
 
 
@@ -174,7 +174,7 @@ $similarity[] = $codeword[$i];
 
         }//end of for loop for retriving similar codeword
 
-
+        echo "</table></div>";
 
         }//end of checking similarity
 
@@ -182,7 +182,9 @@ $similarity[] = $codeword[$i];
 
 }//end of outer for loop
 ?>
+</div>
 
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
 <h3>Anagram</h3>
 
 <?php
@@ -210,24 +212,26 @@ for($i=0;$i < count($codeword); $i++ ){
 if(count($anagram) > 1){
     //print_r($anagram);
 
-
+echo "<table class='table-bordered  pull-left' border='2'>";
     for($k = 0 ; $k < count($anagram); $k++){
         //echo $anagram[$k];
 
         echo "
+        <tr class='text-dark' >
+<td><h4>".$anagram[$k]."</h4></td>
 
-        <h5>".$anagram[$k]."</h5>
-        <form action='softrules_report.php' method='post'>
+        <td >        <form action='softrules_report.php' method='post'>
         <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
         <input type='hidden' name='codeword' value='".$anagram[$k]."'/>
-        <button>Submit</button>
-        </form>
+        <input type='submit' class='text-danger button close' value='x'/>
+        </form></td>
+        </tr>
         ";
 
 
 
     }//end of for loop for retriving anagram codeword
-
+    echo "</table>";
 
 
 
@@ -237,6 +241,7 @@ if(count($anagram) > 1){
 }//end of outer for loop
 
 ?>
+</div>
     </div>
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
