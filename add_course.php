@@ -4,6 +4,27 @@ session_start();
 <?php
 error_reporting(0);
 $course_name = $_POST["course"];
+$name_inc = 0;
+$instructor_email = $_SESSION["email"];
+$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query = "select * from course where instructor_email='".$instructor_email."'";
+$query2 = mysqli_query($db, $query) or die('error querying db');
+                while($row = mysqli_fetch_array($query2))
+                    {
+                        $name = $row['course_name'];
+
+                        if($name == $course_name){
+                            $name_inc += 1;
+                        }//end of if statement
+
+
+                    }//end of while loop
+
+if($name_inc == 0){
+
+
+
+
 $date = $_POST["date"];
 
 $date_split = $keywords = preg_split("/['\s-\s']+/", $date);
@@ -17,10 +38,10 @@ $start_survey = $_POST["start"];
 $end_survey = $_POST["end"];
 $created_at = date("m/d/Y");
 $published = "false";
-$instructor_email = $_SESSION["email"]; 
+ 
 $acknowledged = 0;
 
-$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+
 
 
    if ( isset($_FILES["file"])) {
@@ -42,7 +63,7 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
             $query = "insert into course(course_name,course_code,start_date,end_date,codewordset_key,start_survey,end_survey,created_at,published,instructor_email,acknowledged) values ('$course_name','$course_code','$start_date','$end_date','$codewordset_key','$start_survey','$end_survey','$created_at','$published','$instructor_email','$acknowledged')";
 			$query2 = mysqli_query($db, $query);
 			
-			$query3 = "CREATE TABLE $course_code(full_name VARCHAR(30) NOT NULL,email VARCHAR(50),ack VARCHAR(30))";
+			$query3 = "CREATE TABLE $course_code(full_name VARCHAR(30) NOT NULL,email VARCHAR(50),codeword VARCHAR(50),ack VARCHAR(30))";
 			if (mysqli_query($db, $query3)) {
    				
 			} else {
@@ -71,7 +92,13 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
 
 include 'instructor_dashboard.php';
 
+    }else{
 
+        include 'instructor_dashboard.php';
+        echo " <script>alert('Course name should be unique');</script>  ";
+
+
+    }
 
 
 ?>

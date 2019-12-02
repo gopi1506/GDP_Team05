@@ -6,13 +6,32 @@ error_reporting(0);
 $dups = array();
 $length_check = array();
 $i = 0;
+$name_inc = 0;
+$instructor_email = $_SESSION["email"]; 
 $codewordset_name = $_POST["codeword"];
+$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query = "select * from codewordset where instructor_email='".$instructor_email."'";
+$query2 = mysqli_query($db, $query) or die('error querying db');
+                while($row = mysqli_fetch_array($query2))
+                    {
+                        $name = $row['codewordset_name'];
+
+                        if($name == $codewordset_name){
+                            $name_inc += 1;
+                        }//end of if statement
+
+
+                    }//end of while loop
+
+if($name_inc == 0){
+
+
 $codewordset_code = substr($codewordset_name,0,3).rand(1,100);
 $created_at = date("m/d/Y");
 $published = "false";
-$instructor_email = $_SESSION["email"]; 
 
-$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+
+
 
    if ( isset($_FILES["file"])) {
 
@@ -80,11 +99,13 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
      } else {
              echo "No file selected <br />";
      }
-
-
      include 'hardrules_report.php';
-//include 'instructor_dashboard_codeword.php';
-echo " <script>alert('Successfully added codeword');</script>  ";
+     echo " <script>alert('Successfully added codeword');</script>  ";
+    }else{
+        include 'instructor_dashboard_codeword.php';
+        echo " <script>alert('Codewordset name should be unique');</script>  ";
+
+    }//end of if-else statement
 
 
 

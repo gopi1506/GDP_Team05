@@ -82,7 +82,7 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
      }
 
 
-     include 'hardrules_report.php';
+     include 'admin_hardrules_report.php';
 //include 'instructor_dashboard_codeword.php';
 echo " <script>alert('Successfully added codeword');</script>  ";
 

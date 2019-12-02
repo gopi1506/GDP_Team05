@@ -4,6 +4,7 @@ session_start();
 <?php
 $email = $_SESSION["email"];
 $inc = 0;
+error_reporting(0);
 ?>
 
 
@@ -49,13 +50,13 @@ $last_name = $row['last_name'];
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="instructor_dashboard.php">
+            <a class="nav-link" href="admin_dashboard.php">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="instructor_dashboard_codeword.php">
+            <a class="nav-link" href="admin_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
               <p>Codeword</p>
             </a>
@@ -124,7 +125,7 @@ $last_name = $row['last_name'];
                   <h3 class="card-title">
                   <?php
                   $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-                  $query = "select * from codewordset where instructor_email='$email'";
+                  $query = "select * from codewordset_admin where email='$email'";
                   $query2 = mysqli_query($db, $query) or die('error querying db');
                   $rowcount=mysqli_num_rows($query2);
                   echo $rowcount;
@@ -134,7 +135,97 @@ $last_name = $row['last_name'];
               </div>
             </div>
           </div>
+          
+          
+
           <div class="row">
+
+
+<?php
+
+
+      echo "
+     
+      <div class='card'>
+ <div class='card-header card-header-primary'>
+   <h4 class='card-title'>Instructor Request</h4>
+ </div>
+ <div class='card-body'>
+   <div id='typography'>
+<div class='card-title'>
+
+</div>
+<div class='clearfix'></div>
+     <div class='row'>
+<div class='card-body table-responsive'>
+<table class='table'>
+<thead class='text-primary'>
+<th>Email</th>
+<th></th>
+</thead>
+<tbody>";
+$query3 = "select * from admin";
+$query4 = mysqli_query($db, $query3) or die('error querying db');
+
+while($row = mysqli_fetch_array($query4))
+{
+
+$email_request = $row['email'];
+$ack = $row['ack'];
+if($ack == "false"){
+echo "<tr>";
+echo "<td>".$email_request."</td>";
+echo "<td>
+
+<form method='post' action='request_accept.php'>
+<input type='hidden' value='".$email_request."' name='email'/>
+<button type='submit' class='btn btn-primary pull-right' id='publish'>Accept</button>
+</form>
+
+
+</td>";
+echo "</tr>";
+}//end of if statement
+}//end of while loop
+
+
+
+echo  " </tbody>
+</table>
+</div>
+
+  </div>
+   </div>
+ </div>
+</div>				
+      ";
+
+
+?>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
