@@ -49,6 +49,12 @@ session_start();
                   <p>Codeword</p>
                 </a>
               </li>
+              <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
+            </a>
+          </li>
             </ul>
           </div>
         </div>
