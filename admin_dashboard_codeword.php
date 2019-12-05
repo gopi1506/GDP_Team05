@@ -127,7 +127,6 @@ $last_name = $row['last_name'];
               </div></a>
             </div>
           </div>
-<<<<<<< HEAD
          
 
 
@@ -203,9 +202,6 @@ $background = "";
 
 
 
-=======
-          <div class="row">
->>>>>>> 7ed34f04fa34bd6c7801b59e10264bb133200bc5
       <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
@@ -248,7 +244,6 @@ $background = "";
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<<<<<<< HEAD
   <?php
 for($i = 1;$i<=$inc;$i++){
 echo "
@@ -263,7 +258,5 @@ $('#myform".$i."').submit();
 ?>
 
   
-=======
->>>>>>> 7ed34f04fa34bd6c7801b59e10264bb133200bc5
     </body>
 </html>

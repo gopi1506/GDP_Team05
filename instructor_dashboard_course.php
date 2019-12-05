@@ -25,7 +25,8 @@ error_reporting(0);
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
@@ -65,7 +66,19 @@ $last_name = $row['last_name'];
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword</p>
+              <p>Codeword sets</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_add_codeword.php">
+              <i class="material-icons">content_paste</i>
+              <p>Create Codeword Set</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
             </a>
           </li>
         </ul>
@@ -136,10 +149,10 @@ $last_name = $row['last_name'];
                      
                       <div class="input-group">
                         
-                     <input type="file" name='file' class="form-control inputFileVisible" placeholder="Single File" required>
-                      <span class="input-group-btn btn btn-fab btn-round btn-primary">
+                     <input type="file" name='file' data-toggle="popover" title="File should be a text file which contains student name and email seperated by ',' in every new line!" data-content="Some content inside the popover" class="form-control inputFileVisible" placeholder="Single File" required>
+                      <!--<span class="input-group-btn btn btn-fab btn-round btn-primary">
                       <i class="material-icons">attach_file</i>
-                     </span>
+                     </span>-->
                      </div>
                       </div>
                       <div class="col-md-4">
@@ -161,17 +174,18 @@ $last_name = $row['last_name'];
                        
     <select class="form-control" id="exampleFormControlSelect1" name="codeword">
     
-      <option value="Select Codeword">Select Codeword</option>
+      <option value="Select Codeword">Select Codeword set</option>
       <?php
        $query = "select * from codewordset where instructor_email='$email'";
        $query2 = mysqli_query($db, $query) or die('error querying db');
   while($row = mysqli_fetch_array($query2))
   {
     $codewordset_name = $row["codewordset_name"];
+    $codewordset_code = $row["codewordset_code"];
       $published = $row["published"]; 
 
 if($published == 'true'){
-echo "<option value='".$codewordset_name."'>".$codewordset_name."</option>";
+echo "<option value='".$codewordset_code."'>".$codewordset_name."</option>";
 
 }//end of if condition
 
@@ -422,7 +436,11 @@ $(function() {
 </script>
 
 
-
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>
 
 </body>
 

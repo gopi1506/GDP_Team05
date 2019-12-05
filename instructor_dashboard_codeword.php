@@ -5,6 +5,7 @@ session_start();
 $email = $_SESSION["email"];
 error_reporting(0);
 $inc = 0;
+$temp = 0;
 ?>
 
 
@@ -64,7 +65,19 @@ $last_name = $row['last_name'];
           <li class="nav-item active">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword</p>
+              <p>Codeword sets</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_add_codeword.php">
+              <i class="material-icons">content_paste</i>
+              <p>Create Codeword Set</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
             </a>
           </li>
         </ul>

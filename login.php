@@ -48,7 +48,7 @@ error_reporting(0);
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="email" name="email" placeholder="Username">
+						<input class="input100" type="email" name="email" placeholder="Email">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
@@ -65,7 +65,7 @@ error_reporting(0);
 						</button>
                     </div>
                     <div class="text-center p-t-20">
-                    <a class="txt1" href="#">
+                    <a class="txt1" href="forgot_password.php">
 							Forgot Password?
                         </a>
                     </div>

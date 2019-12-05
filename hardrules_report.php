@@ -95,7 +95,7 @@ session_start();
                       <div class="card-icon">
                         <i class="material-icons">ballot</i>
                       </div>
-                      <p class="card-category">Length</p>
+                      <p class="card-category">Less than minimum length</p>
                       <h5 class="card-title">
                         <?php
                           echo count($length_check);
@@ -110,7 +110,7 @@ session_start();
                       <div class="card-icon">
                         <i class="material-icons">ballot</i>
                       </div>
-                      <p class="card-category">Duplicates</p>
+                      <p class="card-category">Number of Duplicate</p>
                       <h5 class="card-title">
                         <?php
                           echo count($dups);
@@ -132,7 +132,7 @@ session_start();
 				                  <div class='card-body table-responsive'>
                             <table class='table'>
 				                      <thead class='text-primary'>
-				                        <th>Length</th>
+				                        <th>Small length codewords</th>
 			                        </thead>
 				                      <tbody> 
                                 <?php
@@ -140,7 +140,7 @@ session_start();
                                     echo "<tr><td>".$length."</td></tr>";
                                   }//end of for each loop
                                   echo "<thead class='text-primary'>
-                                  <th>Duplicates</th>
+                                  <th>Number of Duplicate codewords</th>
                                   </thead>";
                                   foreach($dups as $duplicates){
                                     echo "<tr><td>".$duplicates."</td></tr>";

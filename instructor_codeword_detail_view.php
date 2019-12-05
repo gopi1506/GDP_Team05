@@ -65,7 +65,19 @@ error_reporting(0);
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword</p>
+              <p>Codeword sets</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_add_codeword.php">
+              <i class="material-icons">content_paste</i>
+              <p>Create Codeword Set</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
             </a>
           </li>
         </ul>
@@ -147,7 +159,7 @@ error_reporting(0);
         
 
 		 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-		 $query = "select * from codewordset where codewordset_code='$codewordset_code'";
+		 $query = "select * from codewordset where codewordset_code='$codewordset_code' and instructor_email='$email'";
 		 $query2 = mysqli_query($db, $query) or die('error querying db');
 						 while($row = mysqli_fetch_array($query2))
 							 {
@@ -155,6 +167,7 @@ error_reporting(0);
 								 $published = $row['published'];
                 
             
+                 
 
 
 								 echo "
@@ -165,18 +178,34 @@ error_reporting(0);
             </div>
             <div class='card-body'>
               <div id='typography'>
-				<div class='card-title'>
-				<form action='delete_codeword.php' method='post' >
+        <div class='card-title'>";
+        $query = "select * from codewordset_admin where codewordset_code='$codewordset_code'";
+        $query2 = mysqli_query($db, $query) or die('error querying db');
+        while($row = mysqli_fetch_array($query2))
+          {
+            $temp += 1;
+
+          }//end of while loop
+
+        if($temp == 0){
+				echo "<form action='delete_codeword.php' method='post' >
 				<input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
 				<button type='submit' class='btn btn-danger pull-right' >Delete Codewordset</button>
-				</form>
-				<form method='post' action='#'>
-				<input type='hidden' value=''/>
-				<button type='submit' class='btn btn-warning pull-right' id='edit'>Edit Codewordset</button>
-				</form>
-				<form method='post' action='publish_codeword.php'>
+        </form>";
+               }//end of if statement
+
+				/*<form method='post' action='edit_codeword.php'>
+        <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
+				<button type='submit' class='btn btn-warning pull-right' >Edit Codewordset</button>
+				</form>*/
+				echo "<form method='post' action='publish_codeword.php'>
         <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
         <button type='submit' class='btn btn-primary pull-right' id='publish' >Publish Codewordset</button>
+
+        <form method='post' action='instructor_codeword_detail_view.php'>
+        <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
+				<button type='submit' class='btn btn-warning pull-right' id='publish' disabled>Add codeword</button>
+        </form>
         ";
         if($published == "true"){
          echo " <script> 
@@ -198,7 +227,7 @@ error_reporting(0);
 				<table class='table'>
 				<thead class='text-primary'>
 				<th>Codeword</th>
-				<th>Assign</th>
+			<!--	<th>Assign</th> -->
 			  </thead>
 				  <tbody>";
 				  $query3 = "select * from ".$codewordset_code;
@@ -211,7 +240,7 @@ error_reporting(0);
 				  $assign = $row['assign'];
 				  echo "<tr>";
 				  echo "<td>".$name."</td>";
-				  echo "<td>".$assign."</td>";
+				 // echo "<td>".$assign."</td>";
 				  echo "</tr>";
 			  }//end of inner while loop	
 			  }//end of while loop

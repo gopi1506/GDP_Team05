@@ -73,8 +73,8 @@ $acknowledged = 0;
             $myfile = fopen("student/".$storagename, "r") or die("Unable to open file!");
 			while(!feof($myfile)) {
  			 $line = fgets($myfile);
- 			 $arra_stud_detai = $keywords = preg_split("/[,]+/", $line);
- 			 $query5 = "insert into ".$course_code."(full_name,email,ack) values ('$arra_stud_detai[0]','$arra_stud_detai[1]','false')";
+              $arra_stud_detai = $keywords = preg_split("/[,]+/", $line);
+ 			 $query5 = "insert into ".$course_code."(full_name,email,codeword,ack) values ('".trim($arra_stud_detai[0])."','".trim($arra_stud_detai[1])."','','false')";
 			 $query6 = mysqli_query($db, $query5);
 				}
 			fclose($myfile);

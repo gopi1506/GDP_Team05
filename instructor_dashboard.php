@@ -4,6 +4,8 @@ session_start();
 <?php
 $email = $_SESSION["email"];
 $inc = 0;
+$ack_temp = 0;
+$total_students = 0;
 ?>
 
 
@@ -63,7 +65,19 @@ $last_name = $row['last_name'];
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword</p>
+              <p>Codeword sets</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_add_codeword.php">
+              <i class="material-icons">content_paste</i>
+              <p>Create Codeword Set</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
             </a>
           </li>
         </ul>
@@ -192,7 +206,23 @@ $background = "";
                       </tr>
                       <tr>
                         <td>Acknowledged</td>
-                        <td>0</td>
+                        <td>";
+                        $query3 = "select * from $course_code";
+                        $query4 = mysqli_query($db, $query3) or die('error querying db');
+                        while($row1 = mysqli_fetch_array($query4))
+                          {
+                        $ack = $row1['ack'];
+                        $total_students += 1;
+                        if($ack == "true"){
+                          $ack_temp += 1; 
+                        }//end of if statement
+                        
+                          }//end of while loop
+
+                          echo $ack_temp."/".$total_students;
+                        
+                        
+                        echo "</td>
                       </tr>
                       <tr class='".$background." center'>
                         <td>".$published."</td>
@@ -205,6 +235,8 @@ $background = "";
             </div>
           
             ";
+            $ack_temp = 0;
+            $total_students = 0;
             }//end of while loop
             ?>
 

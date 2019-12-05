@@ -13,7 +13,15 @@
 	if($password != $confirm_password || strlen($password) < 6)
 	{
 		include 'index.php';
-		echo "<script type='text/javascript'>alert('Check Password, Password length must be greater than 5 charectors');</script>";
+		echo "<script type='text/javascript'>
+		document.getElementById('first_name').value = '".$first_name."';
+		document.getElementById('last_name').value = '".$last_name."';
+		document.getElementById('email').value = '".$email."';
+
+		alert('Check Password, Password length must be greater than 5 charectors');
+		
+
+		</script>";
 	}
 	else
 	{
@@ -39,10 +47,22 @@
 			{
 				$role = $is_instructor;
 			}
-			$query = "insert into user_details(first_name,last_name,email,password,role,last_login,is_active) values ('$first_name','$last_name','$email','$password','$role','','')";
+			$hash = password_hash($password, PASSWORD_DEFAULT);
+			$unique = rand(100000,999999);
+			
+			$query = "insert into user_details(first_name,last_name,email,password,role,last_login,is_active,unique_key,ack) values ('$first_name','$last_name','$email','$hash','$role','','','$unique','false')";
 			$query2 = mysqli_query($db, $query);
-			echo " <script>alert('Sucesssfully Registered');</script>  ";
-			include 'login.php';
+			
+			$msg = "This is your verification code: ".$unique."";
+
+            // use wordwrap() if lines are longer than 70 characters
+            $msg = wordwrap($msg,70);
+
+            // send email
+            mail($email,"Codeword Email Verification",$msg);
+			
+			echo " <script>alert('Sucesssfully Registered check email to verify email');</script>  ";
+			include 'verify_email.php';
 		}//end of nested if-else condition
 	}//end of if-else condition for password check
 ?>

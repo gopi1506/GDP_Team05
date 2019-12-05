@@ -124,10 +124,10 @@ $last_name = $row['last_name'];
                      
                       <div class="input-group">
                         
-                     <input type="file" name='file' class="form-control inputFileVisible" placeholder="Single File" required>
-                      <span class="input-group-btn btn btn-fab btn-round btn-primary">
+                      <input type="file" name='file' data-toggle="popover" title="File should be a text file which contains codewords in every new line!" data-content="Some content inside the popover" class="form-control inputFileVisible" placeholder="Single File" required>
+                      <!--<span class="input-group-btn btn btn-fab btn-round btn-primary">
                       <i class="material-icons">attach_file</i>
-                     </span>
+                     </span>-->
                      </div>
                       </div>
                       

@@ -4,6 +4,10 @@ session_start();
 <?php
 $email = $_SESSION["email"];
 error_reporting(0);
+$course_code = $_POST['course_code'];
+$ack_temp = 0;
+$total_students = 0;
+$ij = 1;
 ?>
 
 
@@ -25,6 +29,7 @@ error_reporting(0);
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+  <script src="assets/js/core/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -63,7 +68,19 @@ error_reporting(0);
           <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword</p>
+              <p>Codeword sets</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="instructor_dashboard_add_codeword.php">
+              <i class="material-icons">content_paste</i>
+              <p>Create Codeword Set</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="student_dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p>Student Dashboard</p>
             </a>
           </li>
         </ul>
@@ -111,9 +128,21 @@ error_reporting(0);
                   <h5 class="card-title">
                   <?php
 				 
-				 //write logic to view acknowledged here
+         $query3 = "select * from $course_code";
+         $query4 = mysqli_query($db, $query3) or die('error querying db');
+         while($row1 = mysqli_fetch_array($query4))
+           {
+         $ack = $row1['ack'];
+         $total_students += 1;
+         if($ack == "true"){
+           $ack_temp += 1; 
+         }//end of if statement
+         
+           }//end of while loop
 
-                  echo "0";
+           echo $ack_temp."/".$total_students;
+
+                 
                   ?>
                   </h5>
                 </div>
@@ -121,12 +150,59 @@ error_reporting(0);
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
+                <?php
+                        $color = '';
+                        $query = "select * from course where course_code='$course_code' and instructor_email='$email'";
+                        $query2 = mysqli_query($db, $query) or die('error querying db');
+                        
+                        while($row = mysqli_fetch_array($query2))
+                        {
+                         $codekey = $row['codewordset_key'];
+                         
+                        if($codekey == 'Select Codeword'){
+                         
+                          $color = "card-header-danger";
+                         }else{
+                           $color = "card-header-success";
+                           
+                         }//end of if-else statement
+       
+                        }//end of while loop
+
+                  
+                echo "<div class='card-header ".$color." card-header-icon'>";
+
+                ?>
                   <div class="card-icon">
                     <i class="material-icons">library_books</i>
                   </div>
                   <p class="card-category">Codewordset</p>
-                  <h5 class="card-title">Not Assigned</h5>
+                  <h5 class="card-title">
+                 <?php
+                 $query = "select * from course where course_code='$course_code' and instructor_email='$email'";
+                 $query2 = mysqli_query($db, $query) or die('error querying db');
+                 
+                 while($row = mysqli_fetch_array($query2))
+                 {
+                  $codekey = $row['codewordset_key'];
+                  
+								 if($codekey == 'Select Codeword'){
+									echo "Not Assigned";
+									}else{
+                    $query = "select * from codewordset where codewordset_code='$codekey' and instructor_email='$email'";
+                    $query2 = mysqli_query($db, $query) or die('error querying db');
+                    
+                    while($row = mysqli_fetch_array($query2))
+                    {
+                      $codename = $row['codewordset_name'];
+                      echo $codename;
+                    }//end of inner while loop
+                    
+									}//end of if-else statement
+
+                 }//end of while loop
+                ?>
+                  </h5>
                 </div>
               </div>
 			</div>
@@ -135,10 +211,46 @@ error_reporting(0);
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">link_off</i>
+                    <i class="material-icons">
+                    <?php
+                     $query = "select * from course where course_code='$course_code'";
+                     $query2 = mysqli_query($db, $query) or die('error querying db');
+                     
+                     while($row = mysqli_fetch_array($query2))
+                     {
+                      $start_link = $row['start_survey'];
+                      
+                      if($start_link == ''){
+                        echo "link_off";
+                      }else{
+                        echo "link_on";
+                      }
+
+                     }//end of while loop
+                    ?>
+                    </i>
                   </div>
                   <p class="card-category">Start Survey</p>
-                  <h5 class="card-title">Not Assigned</h5>
+                  <h5 class="card-title">
+                  <?php
+                   $query = "select * from course where course_code='$course_code'";
+                   $query2 = mysqli_query($db, $query) or die('error querying db');
+                   
+                   while($row = mysqli_fetch_array($query2))
+                   {
+                    $start_link = $row['start_survey'];
+                    
+                    if($start_link == ''){
+                      echo "Not Assigned";
+                    }else{
+                      echo "<a href=https://www.".$start_link." style='color:black;' target='_blank'>Link Assigned</a>";
+                    }
+
+                   }//end of while loop
+
+
+                  ?>
+                  </h5>
                 </div>
               </div>
             </div>
@@ -147,10 +259,47 @@ error_reporting(0);
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">link_off</i>
+                    <i class="material-icons">
+                    <?php
+                    $query = "select * from course where course_code='$course_code'";
+                    $query2 = mysqli_query($db, $query) or die('error querying db');
+                    
+                    while($row = mysqli_fetch_array($query2))
+                    {
+                     $end_link = $row['end_survey'];
+                     
+                     if($end_link == ''){
+                       echo "link_off";
+                     }else{
+                       echo "link_on";
+                     }
+
+                    }//end of while loop 
+
+                    ?>
+                    </i>
                   </div>
                   <p class="card-category">End Survey</p>
-                  <h5 class="card-title">Not Assigned</h5>
+                  <h5 class="card-title">
+                  <?php
+                    $query = "select * from course where course_code='$course_code'";
+                    $query2 = mysqli_query($db, $query) or die('error querying db');
+                    
+                    while($row = mysqli_fetch_array($query2))
+                    {
+                     $end_link = $row['end_survey'];
+                     
+                     if($end_link == ''){
+                       echo "Not Assigned";
+                     }else{
+                      echo "<a href=https://www.".$end_link." style='color:black;' target='_blank'>Link Assigned</a>";
+                     }
+
+                    }//end of while loop 
+
+                    ?>
+
+                  </h5>
                 </div>
               </div>
             </div>
@@ -164,7 +313,6 @@ error_reporting(0);
 
 
 
-		 $course_code = $_POST['course_code'];
 		 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
 		 $query = "select * from course where course_code='$course_code'";
 		 $query2 = mysqli_query($db, $query) or die('error querying db');
@@ -204,13 +352,17 @@ error_reporting(0);
 				<input type='hidden' value='".$course_code."' name='course_code'/>
 				<button type='submit' class='btn btn-danger pull-right'>Delete Course</button>
 				</form>
-				<form method='post' action='#'>
-				<input type='hidden' value=''/>
-				<button type='submit' class='btn btn-warning pull-right' disabled>Edit Course</button>
+				<form method='post' action='edit_course.php'>
+				<input type='hidden' value='".$course_code."' name='course_code'/>
+				<button type='submit' class='btn btn-warning pull-right'>Edit Course</button>
 				</form>
-				<form method='post' action='#'>
-				<input type='hidden' value=''/>
-				<button type='submit' class='btn btn-primary pull-right' disabled>Assign Codeword</button>
+				<form method='post' action='publish_course.php'>
+				<input type='hidden' value='".$course_code."' name='course_code'/>
+				<button type='submit' class='btn btn-primary pull-right' id='publish'>Publish Course</button>
+        </form>
+        <form method='post' action='add_student.php'>
+        <input type='hidden' value='".$course_code."' name='course_code'/>
+				<button type='submit' class='btn btn-warning pull-right' id='publish'>Add Student</button>
 				</form>
 				</div>
 				<div class='clearfix'></div>
@@ -219,8 +371,15 @@ error_reporting(0);
 				<table class='table'>
 				<thead class='text-primary'>
 				<th>Student name</th>
-				<th>Student email</th>
-			  </thead>
+        <th>Student email</th>";
+        
+        //if($published != 'true'){
+        echo " <th>Action</th>";
+
+        //}//end of if statement
+       
+        
+        echo "</thead>
 				  <tbody>";
 				  $query3 = "select * from ".$course_code;
 				  $query4 = mysqli_query($db, $query3) or die('error querying db');
@@ -232,9 +391,24 @@ error_reporting(0);
 				  $email = $row['email'];
 				  echo "<tr>";
 				  echo "<td>".$name."</td>";
-				  echo "<td>".$email."</td>";
-				  echo "</tr>";
-			  }//end of inner while loop	
+          echo "<td>".$email."</td>";
+          echo "
+          <td>
+          <form action='delete_student.php' method='post'>
+          <input type='hidden' value='".$course_code."' name='course_code'/>
+          <input type='hidden' value='".$email."' name='email'/>";
+
+        //  if($published != 'true'){
+            echo "          <button class= 'btn btn-danger' >X</button> ";
+
+          //}//end of if statement
+
+         echo "</form>
+          </td>
+          ";
+          echo "</tr>";
+      
+        }//end of inner while loop	
 			  }//end of while loop
 
 
@@ -247,8 +421,24 @@ error_reporting(0);
               </div>
             </div>
           </div>				
-								 ";
+                 ";
+                 
+                 if($published == "true"){
 
+             
+
+                    echo "
+                    <script>
+                    $('#publish').prop('disabled', 'true');      </script>
+                    </script>
+                    
+                    ";
+
+               
+                
+            
+                 
+                 }//end of if statement
 
 			?>
 
@@ -261,7 +451,7 @@ error_reporting(0);
   </div>
 
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
+
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

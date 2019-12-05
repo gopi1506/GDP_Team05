@@ -4,6 +4,7 @@ session_start();
 <?php
 $email = $_SESSION["email"];
 error_reporting(0);
+
 ?>
 
 
@@ -56,11 +57,53 @@ error_reporting(0);
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="request_instructor.php">
-              <i class="material-icons">person</i>
-              <p>Request Instructor</p>
+
+              <p>
+              <?php
+             $query = "select * from user_details where email ='".$email."'";
+             $query2 = mysqli_query($db, $query) or die('error querying db');
+             while($row = mysqli_fetch_array($query2))
+             {
+              $role = $row['role'];
+                if($role == 'Student'){
+                  $query12 = "select * from admin where email = '".$email."'";
+             $query21 = mysqli_query($db, $query12) or die('error querying db');
+             $rowcount=mysqli_num_rows($query21);
+             if($rowcount < 1){
+              echo "<a class='nav-link' href='request_instructor.php'>
+              <i class='material-icons'>person</i>";
+              echo "Request Instructor";
+             }
+                }else{
+               
+                  
+                }//end of if-else statement student
+
+              }//end of while loop
+              ?>
+              </p>
             </a>
           </li>
+            <?php
+            $query = "select * from user_details where email ='".$email."'";
+            $query2 = mysqli_query($db, $query) or die('error querying db');
+            while($row = mysqli_fetch_array($query2))
+            {
+              $role = $row['role'];
+              if($role == 'Student'){
+
+              }else{
+               echo "<li class='nav-item '>
+                <a class='nav-link' href='instructor_dashboard.php'>
+                  <i class='material-icons'>dashboard</i>
+                  <p>Instructor Dashboard</p>
+                </a>
+              </li>";
+
+              }//end of if-else statement
+
+            }//end of while loop
+            ?>
         </ul>
       </div>
     </div>
@@ -107,25 +150,35 @@ $query2 = mysqli_query($db, $query) or die('error querying db');
 
 while($row = mysqli_fetch_array($query2))
 {
+ 
 $course_name = $row['course_name'];
 $course_code = $row['course_code'];
+
+//echo $course_code;
+
 $start_date = $row['start_date'];
 $end_date = $row['end_date'];
 $start_survey = $row['start_survey'];
 $end_survey = $row['end_survey'];
-$codeword_assigned = $row['published'];
+$published = $row['published'];
 
 $query3 = "select * from $course_code";
-$query4 = mysqli_query($db, $query3) or die('error querying db');
+$query4 = mysqli_query($db, $query3) or die('error querying db 1');
+
+if($published == "true"){
+
+
 while($row1 = mysqli_fetch_array($query4))
 {
+  
 $email_student = $row1['email'];
-
-if($email_student == $email){
-
-
+$codeword = $row1['codeword'];
+$ack = $row1['ack'];
 
 
+if($email == $email_student){
+  
+ // echo $email.$email_student."</br>";
   echo "
   <div class='col-lg-6 col-md-12 col-sm-12' id='mydiv".$inc."' style='cursor: pointer;'>
     <div class='card'>
@@ -139,15 +192,34 @@ if($email_student == $email){
           <tbody>
             <tr>
               <td>Start Survey</td>
-              <td>".$start_survey."</td>
+              <td><a href=https://".$start_survey." target='_blank'>".$start_survey."</a></td>
             </tr>
             <tr>
               <td>End Survey</td>
-              <td>".$end_survey."</td>
+              <td><a href=https://".$end_survey." target='_blank'>".$end_survey."</a></td>
             </tr>
             <tr>
               <td>Codeword</td>
-              <td>Not Assigned </td>
+              <td>";
+              // start of codeword acknowledgement
+
+              if($ack == "true"){
+                echo $codeword;
+              }else{
+                echo"
+              <form action='ackcodeword.php' method='post'>
+              <input type='hidden' value='".$course_code."' name='course_code'/>
+              <input type='submit' value='REVEAL'/>
+              </form>
+                ";
+              }//end of if-else statement
+
+              
+
+              
+              
+              //end of codeword acknowledgement
+              echo "</td>
             </tr>
           </tbody>
         </table>
@@ -159,7 +231,10 @@ if($email_student == $email){
 
 }//end of if statement
 
+
 }//end of nested while loop
+}//end of if condition for publish check
+
 
 }//end of outer while loop
 

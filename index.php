@@ -48,17 +48,17 @@ error_reporting(0);
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter first name">
-						<input class="input100" type="text" name="first_name" placeholder="First Name">
+						<input class="input100" type="text" name="first_name" placeholder="First Name" id= "first_name">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
                     
                     <div class="wrap-input100 validate-input" data-validate = "Enter last name">
-						<input class="input100" type="text" name="last_name" placeholder="Last Name">
+						<input class="input100" type="text" name="last_name" placeholder="Last Name" id="last_name">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Enter Email">
-						<input class="input100" type="email" name="email" placeholder="Email">
+						<input class="input100" type="email" name="email" placeholder="Email" id="email">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
