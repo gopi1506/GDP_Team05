@@ -160,8 +160,24 @@ $last_name = $row['last_name'];
                         <div class="form-group">
                        
     <select class="form-control" id="exampleFormControlSelect1" name="codeword">
+    
       <option value="Select Codeword">Select Codeword</option>
-      
+      <?php
+       $query = "select * from codewordset where instructor_email='$email'";
+       $query2 = mysqli_query($db, $query) or die('error querying db');
+  while($row = mysqli_fetch_array($query2))
+  {
+    $codewordset_name = $row["codewordset_name"];
+      $published = $row["published"]; 
+
+if($published == 'true'){
+echo "<option value='".$codewordset_name."'>".$codewordset_name."</option>";
+
+}//end of if condition
+
+
+  }//end of while loop
+      ?>
     </select>
 
         </div>
