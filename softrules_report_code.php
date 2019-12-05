@@ -136,7 +136,11 @@ $codeword[] = $row['codeword'];
 
 <div class="content">
 <div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
+<<<<<<< HEAD
 <h3>Similar codewords</h3>
+=======
+<h3>Similarity</h3>
+>>>>>>> 071f0ba68b7c553f9c84c8b543dcd71a89ed54a9
 <?php
 for($i=0;$i < count($codeword); $i++ ){
 
@@ -174,6 +178,7 @@ $similarity[] = $codeword[$i];
             echo "
 
             <tr class=' text-dark'>
+<<<<<<< HEAD
 <td><h4>".$similarity[$k]."</h4></td>";
 
 $query = "select * from codewordset_admin where codewordset_code='$codewordset_code'";
@@ -186,6 +191,10 @@ $query2 = mysqli_query($db, $query) or die('error querying db');
 
           if($temp == 0){
           echo " <td ><form action='softrules_report.php' method='post'>
+=======
+<td><h4>".$similarity[$k]."</h4></td>
+            <td ><form action='softrules_report.php' method='post'>
+>>>>>>> 071f0ba68b7c553f9c84c8b543dcd71a89ed54a9
             <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
             <input type='hidden' name='codeword' value='".$similarity[$k]."'/>
             <input type='submit' class='text-danger button close' value='x'/>
@@ -244,6 +253,7 @@ echo "<table class='table-bordered  pull-left' border='2'>";
 
         echo "
         <tr class='text-dark' >
+<<<<<<< HEAD
 <td><h4>".$anagram[$k]."</h4></td>";
 
 while($row = mysqli_fetch_array($query2))
@@ -254,6 +264,11 @@ while($row = mysqli_fetch_array($query2))
 
           if($temp == 0){
         echo "<td >        <form action='softrules_report.php' method='post'>
+=======
+<td><h4>".$anagram[$k]."</h4></td>
+
+        <td >        <form action='softrules_report.php' method='post'>
+>>>>>>> 071f0ba68b7c553f9c84c8b543dcd71a89ed54a9
         <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
         <input type='hidden' name='codeword' value='".$anagram[$k]."'/>
         <input type='submit' class='text-danger button close' value='x'/>

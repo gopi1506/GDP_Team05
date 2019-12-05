@@ -6,6 +6,7 @@ session_start();
 $course_code = $_POST['course_code'];
 $name = $_POST['name'];
 $email = $_POST['email'];
+<<<<<<< HEAD
 $codeword_temp = array();
 $inc = 0;
 error_reporting(0);
@@ -77,3 +78,10 @@ echo "<script>alert('Student successfully added');</script>";
 include 'add_student.php';
 
 ?>
+=======
+
+
+echo $course_code.$name.$email;
+
+?>
+>>>>>>> 071f0ba68b7c553f9c84c8b543dcd71a89ed54a9
