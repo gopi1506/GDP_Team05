@@ -73,11 +73,10 @@ $anagram_len = array();
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
                   <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Logout
-                  </p>
+                  Logout
                 </a>
               </li>
             </ul>
@@ -96,6 +95,8 @@ $anagram_len = array();
 <?php
 $codewordset_code = $_POST['codewordset'];
 $codeword = array();
+$codewordset_code1 = $_SESSION["codewordset_code"];
+
 
 function is_anagram($string_1, $string_2) 
 { 
@@ -106,20 +107,195 @@ function is_anagram($string_1, $string_2)
 } 
 
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-$query = "select * from ".$codewordset_code."";
-$query2 = mysqli_query($db, $query) or die('error querying db');
+
+
+if($codewordset_code == NULL){
+$query = "select * from ".$codewordset_code1."";
+$query2 = mysqli_query($db, $query) or die('error querying db ');
 
 while($row = mysqli_fetch_array($query2))
 {
 $codeword[] = $row['codeword'];
 
 }//end of while loop
+
+}else{
+    
+ $query = "select * from ".$codewordset_code."";
+$query2 = mysqli_query($db, $query) or die('error querying db');
+
+while($row = mysqli_fetch_array($query2))
+{
+$codeword[] = $row['codeword'];
+
+}//end of while loop   
+    
+}
+
 ?>
 
 <div class="content">
 <div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
-<h3>Similarity</h3>
+
 <?php
+
+
+if($codewordset_code == NULL){
+   // echo $codewordset_code1;
+//start code here
+
+echo " 
+
+<form action='admin_codeword_detail_view.php' method ='post'>
+         
+        
+        <input type='hidden' value='".$codewordset_code1."' name='codewordset_code' />
+        <button>Back</button>
+       
+        
+        
+        
+    </form> 
+     <h3>Similar codewords</h3>
+    ";
+
+
+
+for($i=0;$i < count($codeword); $i++ ){
+
+$similarity = Array();
+
+
+$similarity[] = $codeword[$i];
+//$similarity_len[] = $codeword[$i];
+
+    for($j=$i;$j < count($codeword); $j++ ){
+
+        if($i != $j){
+
+        $a = similar_text($codeword[$i],$codeword[$j],$percent);
+        if($percent >= 65)       
+        {
+            $similarity[] = $codeword[$j];
+            $similarity_len[] = $codeword[$j];
+        }//end of similarity check
+
+           
+        }//end of if condition
+
+
+    }//end of inner for loop
+//echo count($anagram);
+
+
+    if(count($similarity) > 1){
+      //  print_r($similarity);
+      
+      echo "<div class='col-lg-12 col-md-12 col-sm-6'><table class='table-bordered  pull-left'>";
+        for($k = 0 ; $k < count($similarity); $k++){
+            //echo $similarity[$k];
+            echo "
+
+            <tr class=' text-dark'>
+<td><h4>".$similarity[$k]."</h4></td>
+            <td ><form action='admin_softrules_report.php' method='post'>
+            <input type='hidden' name='codewordset_code' value='".$codewordset_code1."'/>
+            <input type='hidden' name='codeword' value='".$similarity[$k]."'/>
+            <input type='submit' class='text-danger button close' value='x'/>
+            </form></td></tr>
+            ";
+
+
+
+            
+
+        }//end of for loop for retriving similar codeword
+
+        echo "</table></div>";
+
+        }//end of checking similarity
+
+       
+
+}//end of outer for loop
+?>
+</div>
+
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
+<h3>Anagram</h3>
+
+<?php
+for($i=0;$i < count($codeword); $i++ ){
+
+    $anagram = Array();
+    $anagram[] = $codeword[$i];
+
+    for($j=$i;$j < count($codeword); $j++ ){
+
+        if($i != $j){
+            $b = is_anagram($codeword[$i], $codeword[$j]);
+            if($b == "yes"){
+               // echo $codeword[$i]."  ".$codeword[$j];
+                $anagram[] = $codeword[$j];
+                $anagram_len = $codeword[$j];
+            }
+
+        }//end of if condition
+
+    }//end of inner for loop
+
+
+
+if(count($anagram) > 1){
+    //print_r($anagram);
+
+echo "<table class='table-bordered  pull-left' border='2'>";
+    for($k = 0 ; $k < count($anagram); $k++){
+        //echo $anagram[$k];
+
+        echo "
+        <tr class='text-dark' >
+<td><h4>".$anagram[$k]."</h4></td>
+
+        <td >        <form action='admin_softrules_report.php' method='post'>
+        <input type='hidden' name='codewordset_code' value='".$codewordset_code1."'/>
+        <input type='hidden' name='codeword' value='".$anagram[$k]."'/>
+        <input type='submit' class='text-danger button close' value='x'/>
+        </form></td>
+        </tr>
+        ";
+
+
+
+    }//end of for loop for retriving anagram codeword
+    echo "</table>";
+
+
+
+    }//end of checking anagrams
+
+
+}//end of outer for loop
+
+}else{
+    
+    echo " 
+
+<form action='admin_codeword_detail_view.php' method ='post'>
+         
+        
+        <input type='hidden' value='".$codewordset_code."' name='codewordset_code' />
+        <button>Back</button>
+       
+        
+        
+        
+    </form> 
+     <h3>Similar codewords</h3>
+    ";
+
+
+
 for($i=0;$i < count($codeword); $i++ ){
 
 $similarity = Array();
@@ -235,6 +411,9 @@ echo "<table class='table-bordered  pull-left' border='2'>";
 
 
 }//end of outer for loop
+    
+    
+}//end of if else statement
 
 ?>
 </div>

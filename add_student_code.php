@@ -6,7 +6,6 @@ session_start();
 $course_code = $_POST['course_code'];
 $name = $_POST['name'];
 $email = $_POST['email'];
-<<<<<<< HEAD
 $codeword_temp = array();
 $inc = 0;
 error_reporting(0);
@@ -14,6 +13,16 @@ error_reporting(0);
 
 
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query91 = "select * from ".$course_code." where email='$email'";
+$query100 = mysqli_query($db, $query91) or die('error querying db 2');
+$rowcount=mysqli_num_rows($query100);
+
+
+
+if($rowcount == 0){
+
+
+
 $query = "select * from course where course_code='$course_code'";
 $query2 = mysqli_query($db, $query) or die('error querying db 1');
 
@@ -26,9 +35,26 @@ $codewordset_code = $row['codewordset_key'];
 if($published == 'false'){
     $query5 = "insert into ".$course_code."(full_name,email,codeword,ack) values ('$name','$email','','false')";
     $query6 = mysqli_query($db, $query5);
+   echo "<script>alert('Student successfully added');</script>";
 }else{
 // this is what happens when course is published
-echo $codewordset_code;
+
+
+
+
+                            $query3 = "select * from ".$codewordset_code."";
+                            $query4 = mysqli_query($db, $query3) or die('error querying db');
+                            $codewordscount=mysqli_num_rows($query4);
+                            //echo $codewordscount;
+                            $query11 = "select * from ".$course_code."";
+                            $query12 = mysqli_query($db, $query11) or die('error querying db');
+                            $studentcount=mysqli_num_rows($query12);
+                           // echo "in select codeword";
+
+                            $studentpercent = $studentcount + ($studentcount * (20/100));
+
+                            if($codewordscount > $studentpercent){
+                                //echo $codewordset_code;
 $query7 = "select * from ".$codewordset_code."";
 $query8 = mysqli_query($db, $query7) or die('error querying db 1');
 while($row = mysqli_fetch_array($query8))
@@ -47,41 +73,47 @@ while($row = mysqli_fetch_array($query8))
     }//while loop for course to access student codewords
 
 }//while loop for codewordset code to retrive codewords
-
+                                
+                      
 $inc = rand( 0 , count($codeword_temp)) ;
-
-$query91 = "select * from ".$course_code." where email='$email'";
-$query100 = mysqli_query($db, $query91) or die('error querying db 2');
-$rowcount=mysqli_num_rows($query100);
-
-if($rowcount == 0){
 
 $query11 = "insert into ".$course_code."(full_name,email,codeword,ack) values ('$name','$email','".$codeword_temp[$inc]."','false')";
 $query12 = mysqli_query($db, $query11);
-echo "<script>alert('Student successfully added');</script>";
+
+echo "<script>alert('Student successfully added');</script>";          
+                                
+                                
+                            }else{
+                                echo "<script>alert('You cannot add student as codeword set is less than 20% of total students');</script>";          
+
+                            }//end of if wlse statement for checking codewordset code
+
+
+
+
+
+
+
+}//end of if else statement for checking if course is published or not
+
+
+
+
+
+
 
 }else{
     echo "<script>alert('Student already exists');</script>";
+    include 'add_student.php';
 
-}//end of if-else statement
-
-
-}//end of if else statement
+}//end of if-else statement for checking unique student
 
 
 
 
 
-
-
-
-include 'add_student.php';
+include 'instructor_course_detail_view.php';
 
 ?>
-=======
 
 
-echo $course_code.$name.$email;
-
-?>
->>>>>>> 071f0ba68b7c553f9c84c8b543dcd71a89ed54a9

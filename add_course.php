@@ -41,7 +41,7 @@ $published = "false";
  
 $acknowledged = 0;
 
-
+if(preg_match("/.txt/",$_FILES["file"]["name"])){
 
 
    if ( isset($_FILES["file"])) {
@@ -89,8 +89,15 @@ $acknowledged = 0;
      } else {
              echo "No file selected <br />";
      }
-
+echo " <script>alert('Course added succesfully');</script>  ";
 include 'instructor_dashboard.php';
+
+}else{
+          include 'instructor_dashboard_course.php';
+        echo " <script>alert('File not supported');</script>  ";
+    
+}//chedcling file format
+
 
     }else{
 

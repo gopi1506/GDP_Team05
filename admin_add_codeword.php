@@ -11,8 +11,31 @@ $codewordset_code = substr($codewordset_name,0,3).rand(1,100);
 $created_at = date("m/d/Y");
 $published = "false";
 $email = $_SESSION["email"]; 
+$name_inc = 0;
 
 $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+
+
+$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+$query = "select * from codewordset_admin where email='".$email."'";
+$query2 = mysqli_query($db, $query) or die('error querying db');
+                while($row = mysqli_fetch_array($query2))
+                    {
+                        $name = $row['codewordset_name'];
+
+                        if($name == $codewordset_name){
+                            $name_inc += 1;
+                        }//end of if statement
+
+
+                    }//end of while loop
+
+if($name_inc == 0){
+
+
+
+
+if(preg_match("/.txt/",$_FILES["file"]["name"])){
 
    if ( isset($_FILES["file"])) {
 
@@ -42,7 +65,7 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
 			
             $myfile = fopen("codeword/".$storagename, "r") or die("Unable to open file!");
 			while(!feof($myfile)) {
- 			 $line = fgets($myfile);
+ 			 $line = strtoupper(fgets($myfile));
               $arra_stud_detai = $keywords = preg_split("/[,]+/", $line);
                 if(strlen(trim($arra_stud_detai[0])) >= 3){
               $query8 = "select * from $codewordset_code";
@@ -86,6 +109,18 @@ $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to
 //include 'instructor_dashboard_codeword.php';
 echo " <script>alert('Successfully added codeword');</script>  ";
 
+}else{
+    
+          include 'admin_dashboard_add_codeword.php';
+        echo " <script>alert('File not supported');</script>  ";
+}//end of checking file format
+
+}else{
+    
+     include 'admin_dashboard_add_codeword.php';
+     echo " <script>alert('Codewordset name should be unique');</script>  ";
+    
+}//end of if-else statement
 
 
 ?>

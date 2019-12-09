@@ -80,11 +80,10 @@ $last_name = $row['last_name'];
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
                   <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Logout
-                  </p>
+                  Logout
                 </a>
               </li>
             </ul>

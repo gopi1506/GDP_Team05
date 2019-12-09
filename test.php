@@ -2,14 +2,14 @@
 session_start();
 ?>
 <?php
-$email = $_SESSION["email"];
-error_reporting(0);
-$inc = 0;
+$similarity_len = array();
+$anagram_len = array();
 $temp = 0;
 ?>
 
 
-<!DOCTYPE html>
+
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -17,7 +17,7 @@ $temp = 0;
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Codewordset Dashboard
+    Soft Rules Report
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -35,17 +35,7 @@ $temp = 0;
 
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
-          <?php
-          $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
- $query = "select * from user_details where email='$email'";
-     $query2 = mysqli_query($db, $query) or die('error querying db');
-while($row = mysqli_fetch_array($query2))
-{
-$first_name = $row['first_name'];
-$last_name = $row['last_name'];
-          echo $first_name." ".$last_name;
-          }//end of while loop  
-          ?>
+         <!-- something comes here -->
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -62,10 +52,10 @@ $last_name = $row['last_name'];
               <p>Add Course</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="instructor_dashboard_codeword.php">
               <i class="material-icons">library_books</i>
-              <p>Codeword sets</p>
+              <p>Codeword</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -88,7 +78,7 @@ $last_name = $row['last_name'];
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#">Codeword Set</a>
+            <a class="navbar-brand" href="#">Soft Rules Report</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -100,10 +90,11 @@ $last_name = $row['last_name'];
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link d-md-block" href="logout.php">
-                    
+                <a class="nav-link" href="logout.php">
                   <i class="material-icons">logout</i>
-                  Logout
+                  <p class="d-lg-none d-md-block">
+                    Logout
+                  </p>
                 </a>
               </li>
             </ul>
@@ -111,110 +102,378 @@ $last_name = $row['last_name'];
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">library_books</i>
-                  </div>
-                  <p class="card-category">Number of Codewords</p>
-                  <h3 class="card-title">
-                  <?php
-                  $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-                  $query = "select * from codewordset where instructor_email='$email'";
-                  $query2 = mysqli_query($db, $query) or die('error querying db');
-                  $rowcount=mysqli_num_rows($query2);
-                  echo $rowcount;
-                  ?>
-                  </h3>
-                </div>
-              </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <a href="instructor_dashboard_add_codeword.php"><div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">add_file</i>
-                  </div>
-                  <h4 class="card-title">
-                    Add Codewordset
-                  </h4>
-                </div>
-              </div></a>
-            </div>
 
-          </div>
-          <div class="row">
-         
-         
-          <?php
-            $db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
-$query = "select * from codewordset where instructor_email='$email'";
-$query2 = mysqli_query($db, $query) or die('error querying db');
+     
+
+
+
+
+
+<?php
+$codewordset_code = $_POST['codewordset'];
+$codeword = array();
+
+function is_anagram($string_1, $string_2) 
+{ 
+    if (count_chars($string_1, 1) == count_chars($string_2, 1)) 
+        return 'yes'; 
+    else 
+        return 'no';        
+} 
+
+$db = mysqli_connect('localhost', 'root', '', 'gdp') or die('error connecting to mysql db');
+
+$codewordset_code1 = $_SESSION["codewordset_code"];
+
+if($codewordset_code == NULL){
+    $query = "select * from ".$codewordset_code1."";
+//echo $codewordset_code;
+$query2 = mysqli_query($db, $query) or die('error querying db 1');
 
 while($row = mysqli_fetch_array($query2))
 {
-$codewordset_name = $row['codewordset_name'];
-$codewordset_code = $row['codewordset_code'];
-$codeword_assigned = $row['published'];
-$published = "";
-$background = "";
-         
-          if($codeword_assigned == 'false'){
-  $published = "Not assigned";
-  $background = "card-header-danger";
-  }else{
-  $published = "Assigned";
-  $background = "card-header-success";
-  }//end of if else statement
-         $inc = $inc + 1;
-          echo "
-          <form action='instructor_codeword_detail_view.php' method='post' id='myform".$inc."'>
-          <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
-          </form>
-            <div class='col-lg-6 col-md-12 col-sm-12' id='mydiv".$inc."' style='cursor: pointer;'>
-              <div class='card'>
-                <div class='card-header card-header-success'>
-                  <h4 class='card-title'>".$codewordset_name."</h4>
-                </div>
-                <div class='card-body table-responsive'>
-                  <table class='table'>
-                    <tbody>
-                      <tr>
-                        <td>Number of codewords</td>
-                        <td>";
-                        $query3 = "select * from ".$codewordset_code;
-                        $query4 = mysqli_query($db, $query3) or die('error querying db');
-                        $rowcount=mysqli_num_rows($query4);
-                        echo $rowcount;
-  
-  
-                       echo" </td>
-                      </tr>
-                      <tr class='".$background." center'>
-                        <td>".$published."</td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+$codeword[] = $row['codeword'];
+
+}//end of while loop
+
+    
+}else{
+
+$query = "select * from ".$codewordset_code."";
+//echo $codewordset_code;
+$query2 = mysqli_query($db, $query) or die('error querying db 1');
+
+while($row = mysqli_fetch_array($query2))
+{
+$codeword[] = $row['codeword'];
+
+}//end of while loop
+
+}//if else statement for redirection
+?>
+
+<div class="content">
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
+
+<h3>Similar codewords</h3>
+
+
+<?php
+
+
+if($codewordset_code == NULL){
+    echo $codewordset_code1;
+//start code here
+
+
+for($i=0;$i < count($codeword); $i++ ){
+
+    $similarity = Array();
+    
+    
+    $similarity[] = $codeword[$i];
+    //$similarity_len[] = $codeword[$i];
+    
+        for($j=$i;$j < count($codeword); $j++ ){
+    
+            if($i != $j){
+    
+            $a = similar_text($codeword[$i],$codeword[$j],$percent);
+            if($percent >= 65)       
+            {
+                $similarity[] = $codeword[$j];
+                $similarity_len[] = $codeword[$j];
+            }//end of similarity check
+    
+               
+            }//end of if condition
+    
+    
+        }//end of inner for loop
+    //echo count($anagram);
+    
+    
+        if(count($similarity) > 1){
+          //  print_r($similarity);
           
-            ";
-            }//end of while loop
-            ?>
+          echo "<div class='col-lg-12 col-md-12 col-sm-6'><table class='table-bordered  pull-left'>";
+            for($k = 0 ; $k < count($similarity); $k++){
+                //echo $similarity[$k];
+                
 
-          </div>
-        </div>
-      </div>
+
+
+//end code here
+
+$query = "select * from codewordset_admin where codewordset_code='$codewordset_code1'";
+$query2 = mysqli_query($db, $query) or die('error querying db here');
+        while($row = mysqli_fetch_array($query2))
+          {
+            $temp += 1;
+
+          }//end of while loop
+
+//start changing here
+
+
+
+if($temp == 0){
+    echo " <td ><form action='softrules_report.php' method='post'>
+<td><h4>".$similarity[$k]."</h4></td>
+      <td ><form action='softrules_report.php' method='post'>
+      <input type='hidden' name='codewordset_code' value='".$codewordset_code1."'/>
+      <input type='hidden' name='codeword' value='".$similarity[$k]."'/>
+      <input type='submit' class='text-danger button close' value='x'/>
+      </form></td></tr>
+      ";
+
+    }
+
+      
+
+  }//end of for loop for retriving similar codeword
+
+  echo "</table></div>";
+
+  }//end of checking similarity
+
+ 
+
+}//end of outer for loop
+
+$temp = 0;
+
+echo "</div>
+
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
+<h3>Anagram</h3>
+";
+
+for($i=0;$i < count($codeword); $i++ ){
+
+$anagram = Array();
+$anagram[] = $codeword[$i];
+
+for($j=$i;$j < count($codeword); $j++ ){
+
+  if($i != $j){
+      $b = is_anagram($codeword[$i], $codeword[$j]);
+      if($b == "yes"){
+         // echo $codeword[$i]."  ".$codeword[$j];
+          $anagram[] = $codeword[$j];
+          $anagram_len = $codeword[$j];
+      }
+
+  }//end of if condition
+
+}//end of inner for loop
+
+
+
+if(count($anagram) > 1){
+//print_r($anagram);
+
+echo "<table class='table-bordered  pull-left' border='2'>";
+for($k = 0 ; $k < count($anagram); $k++){
+  //echo $anagram[$k];
+
+  echo "
+  <tr class='text-dark' >
+<td><h4>".$anagram[$k]."</h4></td>";
+
+while($row = mysqli_fetch_array($query2))
+    {
+      $temp += 1;
+
+    }//end of while loop
+
+    if($temp == 0){
+  echo "<td >        <form action='softrules_report.php' method='post'>
+<td><h4>".$anagram[$k]."</h4></td>
+
+  <td >        <form action='softrules_report.php' method='post'>
+  <input type='hidden' name='codewordset_code' value='".$codewordset_code1."'/>
+  <input type='hidden' name='codeword' value='".$anagram[$k]."'/>
+  <input type='submit' class='text-danger button close' value='x'/>
+  </form></td>
+  </tr>
+  ";
+    }
+
+
+}//end of for loop for retriving anagram codeword
+echo "</table>";
+
+
+
+}//end of checking anagrams
+
+
+}//end of outer for loop
+
+
+
+//end of changing here
+
+
+}else{
+
+//start code here
+
+for($i=0;$i < count($codeword); $i++ ){
+
+    $similarity = Array();
+    
+    
+    $similarity[] = $codeword[$i];
+    //$similarity_len[] = $codeword[$i];
+    
+        for($j=$i;$j < count($codeword); $j++ ){
+    
+            if($i != $j){
+    
+            $a = similar_text($codeword[$i],$codeword[$j],$percent);
+            if($percent >= 65)       
+            {
+                $similarity[] = $codeword[$j];
+                $similarity_len[] = $codeword[$j];
+            }//end of similarity check
+    
+               
+            }//end of if condition
+    
+    
+        }//end of inner for loop
+    //echo count($anagram);
+    
+    
+        if(count($similarity) > 1){
+          //  print_r($similarity);
+          
+          echo "<div class='col-lg-12 col-md-12 col-sm-6'><table class='table-bordered  pull-left'>";
+            for($k = 0 ; $k < count($similarity); $k++){
+                //echo $similarity[$k];
+                
+
+
+//end code here
+
+$query = "select * from codewordset_admin where codewordset_code='$codewordset_code'";
+$query2 = mysqli_query($db, $query) or die('error querying db here');
+        while($row = mysqli_fetch_array($query2))
+          {
+            $temp += 1;
+
+          }//end of while loop
+
+//start changing here
+
+
+if($temp == 0){
+    echo " <td ><form action='softrules_report.php' method='post'>
+<td><h4>".$similarity[$k]."</h4></td>
+      <td ><form action='softrules_report.php' method='post'>
+      <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
+      <input type='hidden' name='codeword' value='".$similarity[$k]."'/>
+      <input type='submit' class='text-danger button close' value='x'/>
+      </form></td></tr>
+      ";
+
+    }
+
+      
+
+  }//end of for loop for retriving similar codeword
+
+  echo "</table></div>";
+
+  }//end of checking similarity
+
+ 
+
+}//end of outer for loop
+
+$temp = 0;
+
+echo "</div>
+
+<div class='col-lg-12 col-md-12 col-sm-6 pull-left'>
+<h3>Anagram</h3>
+";
+
+for($i=0;$i < count($codeword); $i++ ){
+
+$anagram = Array();
+$anagram[] = $codeword[$i];
+
+for($j=$i;$j < count($codeword); $j++ ){
+
+  if($i != $j){
+      $b = is_anagram($codeword[$i], $codeword[$j]);
+      if($b == "yes"){
+         // echo $codeword[$i]."  ".$codeword[$j];
+          $anagram[] = $codeword[$j];
+          $anagram_len = $codeword[$j];
+      }
+
+  }//end of if condition
+
+}//end of inner for loop
+
+
+
+if(count($anagram) > 1){
+//print_r($anagram);
+
+echo "<table class='table-bordered  pull-left' border='2'>";
+for($k = 0 ; $k < count($anagram); $k++){
+  //echo $anagram[$k];
+
+  echo "
+  <tr class='text-dark' >
+<td><h4>".$anagram[$k]."</h4></td>";
+
+while($row = mysqli_fetch_array($query2))
+    {
+      $temp += 1;
+
+    }//end of while loop
+
+    if($temp == 0){
+  echo "<td >        <form action='softrules_report.php' method='post'>
+<td><h4>".$anagram[$k]."</h4></td>
+
+  <td >        <form action='softrules_report.php' method='post'>
+  <input type='hidden' name='codewordset_code' value='".$codewordset_code."'/>
+  <input type='hidden' name='codeword' value='".$anagram[$k]."'/>
+  <input type='submit' class='text-danger button close' value='x'/>
+  </form></td>
+  </tr>
+  ";
+    }
+
+
+}//end of for loop for retriving anagram codeword
+echo "</table>";
+
+
+
+}//end of checking anagrams
+
+
+}//end of outer for loop
+
+
+//end of changes here
+          
+}//end of check for query do check
+
+
+
+?>
+</div>
     </div>
-  </div>
-
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
@@ -436,23 +695,6 @@ $background = "";
     });
  
   </script>
-          
-<?php
-for($i = 1;$i<=$inc;$i++){
-echo "
-<script>
-$('#mydiv".$i."').click(function(){
-$('#myform".$i."').submit();
-  });
-</script>
-
-";
-}//end of for loop
-?>
-
-
-          
-       
 
 </body>
 </html>

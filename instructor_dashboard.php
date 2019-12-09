@@ -100,11 +100,10 @@ $last_name = $row['last_name'];
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
                   <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Logout
-                  </p>
+                  Logout
                 </a>
               </li>
             </ul>
@@ -196,15 +195,8 @@ $background = "";
                 <div class='card-body table-responsive'>
                   <table class='table'>
                     <tbody>
-                      <tr>
-                        <td>Start Survey</td>
-                        <td>".$start_survey."</td>
-                      </tr>
-                      <tr>
-                        <td>End Survey</td>
-                        <td>".$end_survey."</td>
-                      </tr>
-                      <tr>
+                    
+                                          <tr>
                         <td>Acknowledged</td>
                         <td>";
                         $query3 = "select * from $course_code";
@@ -224,6 +216,16 @@ $background = "";
                         
                         echo "</td>
                       </tr>
+                    
+                      <tr>
+                        <td>Start Survey</td>
+                        <td>".$start_survey."</td>
+                      </tr>
+                      <tr>
+                        <td>End Survey</td>
+                        <td>".$end_survey."</td>
+                      </tr>
+
                       <tr class='".$background." center'>
                         <td>".$published."</td>
                         <td></td>

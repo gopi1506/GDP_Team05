@@ -38,7 +38,7 @@ error_reporting(0);
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action='login_form.php' method='post'>
+				<form class="login100-form validate-form" action='verify_email_code.php' method='post'>
 					<span class="login100-form-logo">
 						<img src="images/icons/logo.png" width="80" height="80"/>
 					</span>

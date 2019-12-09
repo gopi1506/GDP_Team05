@@ -74,14 +74,13 @@ session_start();
               <div class="collapse navbar-collapse justify-content-end">
                 <form class="navbar-form"></form>
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="logout.php">
-                      <i class="material-icons">logout</i>
-                      <p class="d-lg-none d-md-block">
-                        Logout
-                      </p>
-                    </a>
-                  </li>
+              <li class="nav-item">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
+                  <i class="material-icons">logout</i>
+                  Logout
+                </a>
+              </li>
                 </ul>
               </div>
             </div>
@@ -89,6 +88,13 @@ session_start();
           <div class="content">
             <div class="container-fluid">
               <div class="row">	
+                                 <a href='instructor_dashboard_codeword.php'>
+
+        <button>Back</button>
+
+    </a> 
+              
+              
                 <div class="col-lg-3 col-md-6 col-sm-6">
                   <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
@@ -110,7 +116,7 @@ session_start();
                       <div class="card-icon">
                         <i class="material-icons">ballot</i>
                       </div>
-                      <p class="card-category">Number of Duplicate</p>
+                      <p class="card-category">Number of Duplicates</p>
                       <h5 class="card-title">
                         <?php
                           echo count($dups);
@@ -119,6 +125,8 @@ session_start();
                     </div>
                   </div>
                 </div>
+                
+                
               </div>
               <div class="row">
                 <div class='card '>
@@ -155,6 +163,9 @@ session_start();
                   </div>			
                 </div>
               </div>
+              
+
+              
             </div>
           </div>
         </div>
@@ -382,7 +393,3 @@ session_start();
 
 </body>
 </html>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2b87c5c88fa74d1f0a870d24b67958f761b6f222

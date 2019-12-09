@@ -30,7 +30,7 @@ $codewordset_code = substr($codewordset_name,0,3).rand(1,100);
 $created_at = date("m/d/Y");
 $published = "false";
 
-
+if(preg_match("/.txt/",$_FILES["file"]["name"])){
 
 
    if ( isset($_FILES["file"])) {
@@ -61,15 +61,20 @@ $published = "false";
 			
             $myfile = fopen("codeword/".$storagename, "r") or die("Unable to open file!");
 			while(!feof($myfile)) {
- 			 $line = fgets($myfile);
+ 			 $line = strtoupper(fgets($myfile));
               $arra_stud_detai = $keywords = preg_split("/[,]+/", $line);
-                if(strlen(trim($arra_stud_detai[0])) >= 3){
+              
+            
+              
+                if(strlen(trim($arra_stud_detai[0])) >= 3  ){
               $query8 = "select * from $codewordset_code";
               $query9 = mysqli_query($db, $query8) or die('error querying db');
                               while($row = mysqli_fetch_array($query9))
                                   {
                                     $codeword11 = $row['codeword'];
+                                    
                                     if($arra_stud_detai[0] == $codeword11){
+
                                      $i += 1;
                                      $dups[] = $arra_stud_detai[0];
                                     }
@@ -100,7 +105,14 @@ $published = "false";
              echo "No file selected <br />";
      }
      include 'hardrules_report.php';
-     echo " <script>alert('Successfully added codeword');</script>  ";
+    echo " <script>alert('Successfully added codeword');</script>  ";
+    
+}else{
+          include 'instructor_dashboard_add_codeword.php';
+        echo " <script>alert('File not supported');</script>  ";
+    
+}//chedcling file format
+    
     }else{
         include 'instructor_dashboard_codeword.php';
         echo " <script>alert('Codewordset name should be unique');</script>  ";

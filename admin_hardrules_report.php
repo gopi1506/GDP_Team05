@@ -64,28 +64,36 @@ session_start();
               <div class="collapse navbar-collapse justify-content-end">
                 <form class="navbar-form"></form>
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="logout.php">
-                      <i class="material-icons">logout</i>
-                      <p class="d-lg-none d-md-block">
-                        Logout
-                      </p>
-                    </a>
-                  </li>
+              <li class="nav-item">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
+                  <i class="material-icons">logout</i>
+                  Logout
+                </a>
+              </li>
                 </ul>
               </div>
             </div>
           </nav><!-- End Navbar -->
+     
+          
+          
+          
           <div class="content">
             <div class="container-fluid">
               <div class="row">	
+                   <a href='admin_dashboard_codeword.php'>
+
+        <button>Back</button>
+
+    </a> 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                   <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                       <div class="card-icon">
                         <i class="material-icons">ballot</i>
                       </div>
-                      <p class="card-category">Length</p>
+                      <p class="card-category">Less than minimum length</p>
                       <h5 class="card-title">
                         <?php
                           echo count($length_check);
@@ -100,7 +108,7 @@ session_start();
                       <div class="card-icon">
                         <i class="material-icons">ballot</i>
                       </div>
-                      <p class="card-category">Duplicates</p>
+                      <p class="card-category">Number of Duplicates</p>
                       <h5 class="card-title">
                         <?php
                           echo count($dups);
@@ -122,7 +130,7 @@ session_start();
 				                  <div class='card-body table-responsive'>
                             <table class='table'>
 				                      <thead class='text-primary'>
-				                        <th>Length</th>
+				                        <th>Less than minimum length</th>
 			                        </thead>
 				                      <tbody> 
                                 <?php
@@ -130,7 +138,7 @@ session_start();
                                     echo "<tr><td>".$length."</td></tr>";
                                   }//end of for each loop
                                   echo "<thead class='text-primary'>
-                                  <th>Duplicates</th>
+                                  <th>Duplicate Codewords</th>
                                   </thead>";
                                   foreach($dups as $duplicates){
                                     echo "<tr><td>".$duplicates."</td></tr>";

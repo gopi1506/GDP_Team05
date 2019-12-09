@@ -100,11 +100,10 @@ error_reporting(0);
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
                   <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Logout
-                  </p>
+                  Logout
                 </a>
               </li>
             </ul>
@@ -202,10 +201,10 @@ error_reporting(0);
         <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
         <button type='submit' class='btn btn-primary pull-right' id='publish' >Publish Codewordset</button>
 
-        <form method='post' action='instructor_codeword_detail_view.php'>
+        <!--<form method='post' action='instructor_codeword_detail_view.php'>
         <input type='hidden' value='".$codewordset_code."' name='codewordset_code'/>
 				<button type='submit' class='btn btn-warning pull-right' id='publish' disabled>Add codeword</button>
-        </form>
+        </form>-->
         ";
         if($published == "true"){
          echo " <script> 

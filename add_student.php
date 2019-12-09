@@ -97,11 +97,10 @@ $last_name = $row['last_name'];
             <form class="navbar-form"></form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">
+                <a class="nav-link d-md-block" href="logout.php">
+                    
                   <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Logout
-                  </p>
+                  Logout
                 </a>
               </li>
             </ul>
@@ -143,7 +142,7 @@ $last_name = $row['last_name'];
                       <div class="col-md-12">
                         <div class="form-group">
                        
-                      <input type='email'  class='form-control' name='email' placeholder='Enter student email' />";
+                      <input type='email'  class='form-control' name='email' placeholder='Enter student email' />
                 
                           </div>
                     </div>
