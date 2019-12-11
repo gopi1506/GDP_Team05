@@ -22,4 +22,4 @@
 ## Open http://localhost/GDP/ in any supported browser to use the application.
 ## Open http://localhost/phpmyadmin/ in any supported browser to open MySQL database.
 
-## Link to Development Document for Database and application configuration - (https://github.com/gopi1506/GDP_Team05/wiki/About-the-Developers)
+## Link to Development Document for Database and application configuration - https://github.com/gopi1506/GDP_Team05/wiki/Toolchain
